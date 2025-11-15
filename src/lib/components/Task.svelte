@@ -4,7 +4,6 @@
 
 <div class="task">
 	<p>{task}</p>
-	<p>{complete}</p>
 	<p>{dueDate}</p>
 	<div>
 		<p>{xpSocial}</p>
@@ -13,7 +12,11 @@
 		<p>{xpIntellect}</p>
 	</div>
 	<form method="POST" action="/?/completeTask">
-		<input name="id" type="text" value={_id} />
+		<input name="id" type="hidden" value={_id} />
+		<input name="xpSocial" type="hidden" value={xpSocial} />
+		<input name="xpDiscipline" type="hidden" value={xpDiscipline} />
+		<input name="xpHealth" type="hidden" value={xpHealth} />
+		<input name="xpIntellect" type="hidden" value={xpIntellect} />
 		<button>Comp</button>
 	</form>
 </div>

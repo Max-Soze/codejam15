@@ -8,7 +8,7 @@ export const load: PageServerLoad = async () => {
 	const database = client.db('TaskTown');
 	const tasks = database.collection('tasks');
 	let count = await tasks.countDocuments();
-	let allTasks = await tasks.find({}).toArray();
+	let allTasks = await tasks.find({ complete: false }).toArray();
 	let taskList = JSON.parse(JSON.stringify(allTasks));
 
 	// Load User Data from Mongo
@@ -39,9 +39,34 @@ export const actions = {
 		const tasks = client.db('TaskTown').collection('tasks');
 		let data = await request.formData();
 		let id = data.get('id')?.toString();
-		if (id == null) {
+		let xpSocial = Number(data.get('xpSocial'));
+		let xpHealth = Number(data.get('xpHealth'));
+		let xpDiscipline = Number(data.get('xpDiscipline'));
+		let xpIntellect = Number(data.get('xpIntellect'));
+		if (
+			id == null ||
+			xpHealth == null ||
+			xpSocial == null ||
+			xpDiscipline == null ||
+			xpIntellect == null
+		) {
 			return;
 		}
 		await tasks.updateOne({ _id: new ObjectId(id) }, { $set: { complete: true } });
+		await client
+			.db('TaskTown')
+			.collection('users')
+			.updateOne(
+				{},
+				{
+					$inc: {
+						xpSocial: xpSocial,
+						xpHealth: xpHealth,
+						xpDiscipline: xpDiscipline,
+						xpIntellect: xpIntellect,
+						xpTotal: xpSocial + xpHealth + xpDiscipline + xpIntellect
+					}
+				}
+			);
 	}
 } satisfies Actions;
