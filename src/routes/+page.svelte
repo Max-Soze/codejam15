@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
 	import Popup from '$lib/components/Popup.svelte';
+	import TaskForm from '$lib/components/TaskForm.svelte';
 
 	let open = $state(false);
 
@@ -16,12 +17,14 @@
 <br/>
 {#if open}
 	<Popup>
-		{#each data.taskList as task}
-			<br/>
-			{#each Object.entries(task) as [ key, value ]}
-				<p>{key}: {value}</p>
-			{/each}
-		{/each}
-		<button onclick={() => open = false}>Close</button>
+		<TaskForm/>
+		<button onclick={()=> open = false}>Close</button>
 	</Popup>
 {/if}
+
+{#each data.taskList as task}
+	<br>
+	{#each Object.entries(task) as [key, value]}
+		<p>{key}: {value}</p>
+	{/each}
+{/each}
