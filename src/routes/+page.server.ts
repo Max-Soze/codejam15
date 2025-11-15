@@ -68,5 +68,12 @@ export const actions = {
 					}
 				}
 			);
+	},
+
+	generateTask: async ({ request }) => {
+		const client = await mongo;
+		const tasks = client.db('TaskTown').collection('tasks');
+		let data = await request.formData();
+		console.log('generated task');
 	}
 } satisfies Actions;
