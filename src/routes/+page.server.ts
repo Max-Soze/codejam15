@@ -6,5 +6,7 @@ export const load: PageServerLoad = async () => {
     const database = client.db("TaskTown")
     const tasks = database.collection("tasks")
     let count = await tasks.countDocuments()
-    return {count}
+    let allTasks = await tasks.find({}).toArray()
+    let taskList = JSON.parse(JSON.stringify(allTasks))
+    return {count, taskList}
 }
