@@ -1,4 +1,3 @@
-// src/routes/api/score/+server.ts
 import type { RequestHandler } from "@sveltejs/kit";
 import { json } from "@sveltejs/kit";
 import { geminiModel } from "$lib/gemini";
@@ -138,7 +137,6 @@ Rules:
 - Do NOT include any extra fields or text outside of this JSON.
 `;
 
-    // ---- call Gemini safely ----
     let text: string;
     try {
       const result = await geminiModel.generateContent({
@@ -153,7 +151,7 @@ Rules:
         }
       });
 
-      text = result.response.text(); // JSON string from Gemini
+      text = result.response.text(); 
     } catch (err) {
       console.error("Gemini request failed:", err);
       return json(
@@ -165,7 +163,6 @@ Rules:
       );
     }
 
-    // ---- parse JSON from Gemini ----
     let data: {
       total_points?: number;
       category_points?: {

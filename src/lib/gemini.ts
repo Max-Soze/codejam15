@@ -1,4 +1,3 @@
-// src/lib/gemini.ts
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { env } from "$env/dynamic/private";
 
@@ -11,6 +10,6 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 export const geminiModel = genAI.getGenerativeModel({
-  model: "gemini-flash-latest"   // <-- MATCHES YOUR AI STUDIO
+  model: "gemini-flash-latest"   
 });
 
