@@ -2,6 +2,7 @@
 	import type { PageProps } from './$types';
 	import Popup from '$lib/components/Popup.svelte';
 	import TaskForm from '$lib/components/TaskForm.svelte';
+	import Task from '$lib/components/Task.svelte';
 
 	let open = $state(false);
 
@@ -24,7 +25,14 @@
 
 {#each data.taskList as task}
 	<br />
-	{#each Object.entries(task) as [key, value]}
-		<p>{key}: {value}</p>
-	{/each}
+	<Task
+		_id={task._id}
+		task={task.task}
+		complete={task.complete}
+		xpSocial={task.xpSocial}
+		xpHealth={task.xpHealth}
+		xpDiscipline={task.xpDiscipline}
+		xpIntellect={task.xpIntellect}
+		dueDate={task.dueDate}
+	/>
 {/each}

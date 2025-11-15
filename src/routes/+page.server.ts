@@ -1,5 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { mongo } from '$lib/server/mongo';
+import { ObjectId } from 'mongodb';
 
 export const load: PageServerLoad = async () => {
 	// Load tasks from Mongo
@@ -31,5 +32,16 @@ export const actions = {
 			dueDate: taskData.get('dueDate')
 		};
 		await tasks.insertOne(newTask);
+	},
+
+	completeTask: async ({ request }) => {
+		const client = await mongo;
+		const tasks = client.db('TaskTown').collection('tasks');
+		let data = await request.formData();
+		let id = data.get('id')?.toString();
+		if (id == null) {
+			return;
+		}
+		await tasks.updateOne({ _id: new ObjectId(id) }, { $set: { complete: true } });
 	}
 } satisfies Actions;
