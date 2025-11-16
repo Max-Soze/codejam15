@@ -1,5 +1,6 @@
 <script lang="ts">
-	let { date, journalEntry, social, health, discipline, intellect } = $props();
+	import Button2 from './Button2.svelte';
+	let { id, date, journalEntry, social, health, discipline, intellect } = $props();
 </script>
 
 <p class="title">{new Date(date + 'T00:00:00').toDateString()}</p>
@@ -11,6 +12,17 @@
 </div>
 
 <p class="entry">Entry: {journalEntry}</p>
+
+<form method="POST" action="/?/deleteEntry">
+	<input name="id" type="hidden" value={id} />
+	<input name="social" type="hidden" value={social} />
+	<input name="health" type="hidden" value={health} />
+	<input name="discipline" type="hidden" value={discipline} />
+	<input name="intellect" type="hidden" value={intellect} />
+	<button>
+		<Button2 text="Delete" onClick={() => {}}></Button2>
+	</button>
+</form>
 
 <style>
 	.title {

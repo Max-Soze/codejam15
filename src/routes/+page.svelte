@@ -51,6 +51,7 @@
 				<div class="popup">
 					<Popup>
 						<Entry
+							id={entry._id}
 							date={entry.entryDate}
 							journalEntry={entry.journalEntry}
 							social={entry.xpSocial}
@@ -77,6 +78,7 @@
 	<div class="right_panel">
 		<div class="top_panel">
 			<Stats
+				total={Number(data.user.xpTotal)}
 				health={Number(data.user.xpHealth)}
 				social={Number(data.user.xpSocial)}
 				discipline={Number(data.user.xpDiscipline)}

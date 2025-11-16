@@ -3,14 +3,16 @@
 	import Progress from './Progress.svelte';
 
 
-	let { social, health, discipline, intellect } = $props();
+	let { total, social, health, discipline, intellect } = $props();
 </script>
+
 <div>
 	<p class="title2">My Statistics</p>
 </div>
 
 <div class="section grid grid-cols-2">
 	<div>
+		<p>{total}</p>
 		<p>Social</p>
 		<p>
 			social_val = {social}
@@ -26,19 +28,17 @@
 		<p>{intellect}</p>
 	</div>
 </div>
-<style>
 
+<style>
 	.title2 {
-			position: relative;
-			left: 15px;
-			top:10px;
-			font-weight: var(--font-weight-semibold);
+		position: relative;
+		left: 15px;
+		top: 10px;
+		font-weight: var(--font-weight-semibold);
 	}
-	.section{
-		position:relative;
+	.section {
+		position: relative;
 		margin-top: 10px;
 		margin-left: 15px;
-
 	}
-
 </style>
