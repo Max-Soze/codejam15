@@ -14,7 +14,7 @@
 		justify-content: center;
 	}
 	.window {
-		background: white;
+		background:var(--color-bg);
 		padding: 1.5rem;
 		border-radius: 12px;
 		min-width: 300px;

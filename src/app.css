@@ -1,3 +1,40 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme{
+    --color-hover: #e0d4bc;
+    --color-bg: #f2ead5;
+}
+@layer components{
+     * {
+        box-sizing: border-box;
+    }
+    .textarea{ /* to make the borders rounded */ 
+        border-radius: calc(infinity * 1px); /* background and shape*/ 
+        background-color: var(--color-bg); 
+        padding-inline: --spacing(5); 
+        padding-block: --spacing(2); /* text */ 
+        font-weight: var(--font-weight-semibold); 
+        color: var(--color-yellow-800); /*outside the button*/ 
+        box-shadow: var(--shadow-md); 
+        border:1px solid var(--color-yellow-800); }
+        
+    .container{
+        display:flex;
+        width:100%;
+        height:100vh;
+    }
+    .left-panel{
+
+        flex:1;
+        background-color: rgb(217, 207, 185)
+    }
+    .right-panel{
+        flex:2;
+        background-color: rgb(255, 255, 255);
+
+    }
+
+
+}
