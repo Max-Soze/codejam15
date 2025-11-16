@@ -20,7 +20,7 @@
 	<input name="discipline" type="hidden" value={discipline} />
 	<input name="intellect" type="hidden" value={intellect} />
 	<button>
-		<Button2 onClick={() => {}}>Delete</Button2>
+		<Button2 text="Delete" onClick={() => {}}></Button2>
 	</button>
 </form>
 
