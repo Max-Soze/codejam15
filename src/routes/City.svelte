@@ -68,6 +68,14 @@
   else if (health < 500) healthLvl = 3;
   else healthLvl = 4;
 
+  // Discipline level (max of 5)
+  let disciplineLvl = $state(0);
+  if (discipline < 50 ) disciplineLvl = 0;
+  else if (discipline < 150) disciplineLvl = 1;
+  else if (discipline < 300) disciplineLvl = 2.5;
+  else if (discipline < 500) disciplineLvl = 4;
+  else disciplineLvl = 5;
+
   //Generation of the plan for the position of each house
   let nbh_count: number;
   if (totalXp < 100) nbh_count = 1;
@@ -111,11 +119,11 @@
 {/each}
 
 <!-- Sun -->
-<T.PointLight intensity={7000} color={0xffff00} position={[-50, 70, -50]} />
+<T.PointLight intensity={1300 * disciplineLvl + 500} color={0xffff00} position={[-50, 70, -50]} />
 
 <!-- general lighting -->
 <T.AmbientLight
-    intensity={5}
+    intensity={disciplineLvl}
     color={0xFFBBAA}
 />
 
