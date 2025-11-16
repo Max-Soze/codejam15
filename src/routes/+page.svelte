@@ -124,7 +124,7 @@
 	.left_panel {
 		background-color: var(--color-bg);
 		outline: 3px solid var(--color-yellow-800);    
-    	outline-offset: -3px;    
+    	outline-offset: -2.5px;    
 		border-radius: 20px; 
 
 		min-width: 200px;
@@ -140,7 +140,7 @@
 	.top_panel {
 		background-color: var(--color-amber-50);
 		outline: 3px solid var(--color-yellow-800);    
-		outline-offset: -3px;    
+		outline-offset: -2.5px;    
 		border-radius: 20px; 
 	}
 	.bottom_panel {
