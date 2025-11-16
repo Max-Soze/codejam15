@@ -13,3 +13,6 @@ export function getTotalLevel(totalPoints: number): number {
 	else if (totalPoints < 1000) return 3;
 	else return 4;
 }
+
+export const lvlToPointsCat = [0, 50, 150, 300, 500];
+export const lvlToPointsTot = [0, 100, 250, 500, 1000];

@@ -1,29 +1,22 @@
 <script lang="ts">
+	import Progress from '$lib/components/Progress.svelte';
 
-	import Progress from './Progress.svelte';
-	export let total: number;
-	export let social: number;
-	export let health: number;
-	export let discipline: number;
-	export let intellect: number;
-
-
-	//let { total, social, health, discipline, intellect } = $props();
+	let { total, social, health, discipline, intellect } = $props();
 </script>
+
 <div class="all">
 	<div>
 		<p class="title2">My Statistics</p>
 	</div>
 	<div class="indent">
 		<p>Overall Points</p>
-				<p>
-					<Progress category="overall" value={total} color="#f97316" />
-				</p>
+		<p>
+			<Progress category="overall" value={total} color="#f97316" />
+		</p>
 	</div>
 
 	<div class="section grid grid-cols-2">
 		<div>
-			
 			<p>Social</p>
 			<p>
 				<Progress category="social" value={social} color="#f97316" />
@@ -32,7 +25,6 @@
 			<p>
 				<Progress category="health" value={health} color="#f97316" />
 			</p>
-
 		</div>
 		<div>
 			<p>Discipline</p>
@@ -50,9 +42,7 @@
 <style>
 	.title2 {
 		position: relative;
-		left:45%;
-
-
+		left: 45%;
 		top: 10px;
 		font-weight: var(--font-weight-semibold);
 	}
@@ -61,13 +51,12 @@
 		margin-top: 10px;
 		margin-left: 15px;
 	}
-	.indent{
-		margin-top:10px;
+	.indent {
+		margin-top: 10px;
 		margin-left: 15px;
-		width:100%;
+		width: 100%;
 	}
-	.all{
+	.all {
 		align-items: center;
-
 	}
 </style>
