@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Button from '$lib/components/Button.svelte';
+  import Button from '$lib/components/Button2.svelte';
 	import Tasktile from '$lib/components/Tasktile.svelte';
   import MenuButton from '$lib/components/ButtonMenu.svelte';
   import ButtonSlider from '$lib/components/ButtonSlider.svelte';

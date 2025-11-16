@@ -2,8 +2,7 @@
 	import type { PageProps } from './$types';
 	import Popup from '$lib/components/Popup.svelte';
 	import TaskForm from '$lib/components/TaskForm.svelte';
-	import Task from '$lib/components/Task.svelte';
-	import Button from '$lib/components/Button.svelte';
+	import Button2 from '$lib/components/Button2.svelte';
 	import Entry from '$lib/components/Entry.svelte';
 	import { T, Canvas, useTask, useThrelte } from '@threlte/core';
 	import Scene1 from './scene1.svelte';
@@ -39,11 +38,11 @@
 -->
 <div class="container">
 	<div class="left_panel">
-		<Button onClick={() => (open = true)} text="Create New Entry"/>
+		<Button2 onClick={() => (open = true)} text="Create New Entry"/>
 		<br />
 		{#if open}
 			<Popup>
-				<Button onClick={() => (open = false)} text="Close"/>
+				<Button2 onClick={() => (open = false)} text="Close"/>
 				<TaskForm  />
 				
 			</Popup>
@@ -59,16 +58,9 @@
 
 	</div>
 </div>
-{#each data.taskList as task}
 <p>You have made {data.count} entries!</p>
 <button onclick={() => (open = true)}>Open</button>
 <br />
-{#if open}
-	<Popup>
-		<TaskForm />
-		<button onclick={() => (open = false)}>Close</button>
-	</Popup>
-{/if}
 
 {#each data.entryList as entry, i}
 	<br />

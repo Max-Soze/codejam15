@@ -1,5 +1,6 @@
 <script>
-   import Button from '$lib/components/Button.svelte';
+
+   import Button from '$lib/components/Button2.svelte';
    export let TaskName = "TaskName";
 </script>
 
