@@ -20,6 +20,7 @@
 		<button>Comp</button>
 	</form>
 </div> -->
+<p>{date}</p>
 <p>{new Date(date).toDateString()}</p>
 <div class="scores">
 	<p>{social}</p>

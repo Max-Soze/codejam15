@@ -41,7 +41,7 @@
 	{/if}
 	<label>
 		Date
-		<input name="dueDate" type="date" value={new Date().toISOString().slice(0, 10)} />
+		<input name="entryDate" type="date" value={new Date().toISOString().slice(0, 10)} />
 	</label>
 	<button
 		>{#if mode == 'manual'}Create Entry{:else}Generate Entry{/if}</button

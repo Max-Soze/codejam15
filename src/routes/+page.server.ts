@@ -60,7 +60,8 @@ export const load: PageServerLoad = async () => {
 			xpHealth: 0,
 			xpDiscipline: 0,
 			xpIntellect: 0,
-			lastEntry: null
+			lastEntry: null,
+			lastDecayed: null
 		});
 		userData = await users.findOne({});
 	}
