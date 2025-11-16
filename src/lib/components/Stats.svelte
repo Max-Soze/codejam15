@@ -29,11 +29,11 @@
 		<div>
 			<p>Discipline</p>
 			<p>
-				<Progress category="social" value={discipline} color="#f97316" />
+				<Progress category="discipline" value={discipline} color="#f97316" />
 			</p>
 			<p>Intellect</p>
 			<p>
-				<Progress category="health" value={intellect} color="#f97316" />
+				<Progress category="intellect" value={intellect} color="#f97316" />
 			</p>
 		</div>
 	</div>
@@ -42,8 +42,7 @@
 <style>
 	.title2 {
 		position: relative;
-
-		left: 15px;
+		left: 45%;
 		top: 10px;
 		font-weight: var(--font-weight-semibold);
 	}
@@ -59,6 +58,5 @@
 	}
 	.all {
 		align-items: center;
-		background-color: var(--color-amber-50);
 	}
 </style>
