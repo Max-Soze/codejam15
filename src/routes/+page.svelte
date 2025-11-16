@@ -6,7 +6,7 @@
     import { Button, Checkbox, Pane, Separator } from 'svelte-tweakpane-ui';
     import {type CameraControlsRef, useTexture, Environment } from '@threlte/extras'
     import { type Mesh, MathUtils } from 'three'
-
+    
     let controls = $state.raw<CameraControlsRef>();
     let mesh = $state.raw<Mesh>();
     /**
