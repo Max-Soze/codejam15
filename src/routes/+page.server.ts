@@ -2,6 +2,7 @@ import type { PageServerLoad, Actions } from './$types';
 import { mongo } from '$lib/server/mongo';
 import { roboFace, systemPrompt, entrySchema } from '$lib/gemini';
 import { zodToJsonSchema } from 'zod-to-json-schema';
+import { ObjectId } from 'mongodb';
 
 async function makeEntry(
 	social: number,
@@ -119,5 +120,36 @@ export const actions = {
 				entryDate
 			);
 		}
+	},
+
+	deleteEntry: async ({ request }) => {
+		const client = await mongo;
+		const entries = client.db('TaskTown').collection('entries');
+		const users = client.db('TaskTown').collection('users');
+		let data = await request.formData();
+		let idStr = data.get('id');
+		if (!idStr) {
+			return;
+		} else {
+			idStr = idStr.toString();
+			let id = new ObjectId(idStr);
+			await entries.deleteOne({ _id: id });
+		}
+		let social = Number(data.get('social'));
+		let health = Number(data.get('health'));
+		let discipline = Number(data.get('discipline'));
+		let intellect = Number(data.get('intellect'));
+		await users.updateOne(
+			{},
+			{
+				$inc: {
+					xpTotal: -(social + health + discipline + intellect),
+					xpSocial: -social,
+					xpHealth: -health,
+					xpDiscipline: -discipline,
+					xpIntellect: -intellect
+				}
+			}
+		);
 	}
 } satisfies Actions;
