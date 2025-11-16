@@ -83,7 +83,7 @@ export const actions = {
 		let prompt =
 			'Task: ' + task + '\n' + 'Description: ' + description + '\n' + 'Duration: ' + duration;
 		const response = await roboFace.models.generateContent({
-			model: 'gemini-2.5-flash',
+			model: 'gemini-flash-latest',
 			contents: prompt,
 			config: {
 				responseMimeType: 'application/json',
