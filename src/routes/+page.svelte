@@ -35,7 +35,7 @@
 <br />
 <p>There are currently {data.count} tasks registered.</p>
 -->
-<div class="container">
+<div class="contain">
 	<div class="left_panel">
 		<Button2 onClick={() => (open = true)} text="Create New Entry" />
 		<p class="normal_text">You have made {data.count} entries!</p>
@@ -56,7 +56,9 @@
 							discipline={entry.xpDiscipline}
 							intellect={entry.xpIntellect}
 						/>
-						<button onclick={() => (entryVisibility[i] = false)}>Close</button>
+						<div class="centered">
+							<Button2 onClick={() => (entryVisibility[i] = false)} text="Close" />
+						</div>
 					</Popup>
 				</div>
 			{/if}
@@ -73,20 +75,16 @@
 	<div class="right_panel">
 		<div class="top_panel"></div>
 		<div class="bottom_panel">
-			<div class="container">
-				<div class="city">
-					<Canvas>
-						<City
-							bind:controls
-							bind:mesh
-							health={Number(data.user.xpHealth)}
-							discipline={Number(data.user.xpDiscipline)}
-							intellect={Number(data.user.xpIntellect)}
-							social={Number(data.user.xpSocial)}
-						/>
-					</Canvas>
-				</div>
-			</div>
+			<Canvas>
+				<City
+					bind:controls
+					bind:mesh
+					health={Number(data.user.xpHealth)}
+					discipline={Number(data.user.xpDiscipline)}
+					intellect={Number(data.user.xpIntellect)}
+					social={Number(data.user.xpSocial)}
+				/>
+			</Canvas>
 		</div>
 	</div>
 </div>
@@ -96,9 +94,9 @@
 		position: relative;
 		left: 10px;
 	}
-	.container {
+	.contain {
 		height: 100vh;
-		width: 100%;
+		width: 100vw;
 		display: grid;
 		grid-template-columns: 2fr 5fr;
 		font-family: 'Courier New', Courier, monospace;
@@ -168,16 +166,8 @@
 		position: absolute;
 		z-index: 1;
 	}
-	.container {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		height: 100vh; /* full height */
-	}
-
-	.container > div {
-		flex: 1; /* each takes up 50% of the space */
-		height: 100%;
-		overflow: hidden; /* prevents scrollbars if canvas overflows */
+	.centered {
+		position: relative;
+		left: 28%;
 	}
 </style>
