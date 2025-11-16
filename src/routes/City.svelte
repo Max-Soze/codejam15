@@ -55,6 +55,7 @@
   let totalXp = health + discipline + intellect + social;// Should we encase in $state()?
 
   // Health level (max of 5)
+  health = 10;
   let healthLvl: number;
   if (health < 50 ) healthLvl = 0;
   else if (health < 150) healthLvl = 1;
@@ -63,6 +64,7 @@
   else healthLvl = 4;
 
   //Generation of the plan for the position of each house
+  totalXp = 10;
   let nbh_count: number;
   if (totalXp < 100) nbh_count = 1;
   else if (totalXp < 250) nbh_count = 6;
@@ -113,8 +115,8 @@
 
 <!-- general lighting -->
 <T.AmbientLight
-    intensity={2}
-    color={0xFFFFCC}
+    intensity={5}
+    color={0xFFBBAA}
 />
 
 <!-- POV control -->
@@ -127,13 +129,13 @@
 
 <!-- Plane of grass -->
 <T.Mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-    <T.PlaneGeometry args={[500, 500]} />
+    <T.CircleGeometry args={[260, 100]} />
     {#await grassTexture then tex}
         <T.MeshStandardMaterial map={tex} />
     {/await}
 </T.Mesh>
 
 <Environment 
-  url="/textures/daySky.jpg"
-  isBackground 
+  url="/textures/Sky.png"
+  isBackground
 />
