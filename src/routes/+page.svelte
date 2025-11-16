@@ -48,7 +48,7 @@
 		{#each entries as entry, i}
 			<br />
 			<button class="btn-primary" onclick={() => (entryVisibility[i] = true)}>
-				{entry.entryDate}
+				{new Date(entry.entryDate + 'T00:00').toDateString()}
 			</button>
 			{#if entryVisibility[i]}
 				<div class="popup">
