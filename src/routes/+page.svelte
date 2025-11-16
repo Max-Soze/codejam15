@@ -64,10 +64,12 @@
 			{/if}
 		{/each}
 		{#if open}
-			<Popup>
-				<Button2 onClick={() => (open = false)} text="Close" />
-				<TaskForm />
-			</Popup>
+			<div class="popup">
+				<Popup>
+					<Button2 onClick={() => (open = false)} text="Close" />
+					<TaskForm />
+				</Popup>
+			</div>
 		{/if}
 	</div>
 	<div class="right_panel">
