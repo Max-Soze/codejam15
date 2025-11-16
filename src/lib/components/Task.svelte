@@ -6,10 +6,10 @@
 	<p>{task}</p>
 	<p>{dueDate}</p>
 	<div>
-		<p>{xpSocial}</p>
-		<p>{xpHealth}</p>
-		<p>{xpDiscipline}</p>
-		<p>{xpIntellect}</p>
+		<p>Social: {xpSocial}</p>
+		<p>Health: {xpHealth}</p>
+		<p>Discipline: {xpDiscipline}</p>
+		<p>Intellect: {xpIntellect}</p>
 	</div>
 	<form method="POST" action="/?/completeTask">
 		<input name="id" type="hidden" value={_id} />
