@@ -36,5 +36,9 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
 		"vite": "^7.1.10"
+	},
+	"dependencies": {
+		"dotenv": "^17.2.3",
+		"mongodb": "^7.0.0"
 	}
 }
