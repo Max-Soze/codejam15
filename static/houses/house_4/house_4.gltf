@@ -1,0 +1,801 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        461.8470764160156,
+        935.9273681640625,
+        706.9618530273438
+      ],
+      "min": [
+        -468.757080078125,
+        -880.99365234375,
+        -291.8708801269531
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 3456,
+      "componentType": 5126,
+      "count": 288,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 288,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 288,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 576,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 6912,
+      "componentType": 5126,
+      "count": 1829,
+      "max": [
+        474.723388671875,
+        673.0880126953125,
+        736.8617553710938
+      ],
+      "min": [
+        -487.24237060546875,
+        -941.9879150390625,
+        -269.4673156738281
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 28860,
+      "componentType": 5126,
+      "count": 1829,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 4608,
+      "componentType": 5126,
+      "count": 1829,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 2304,
+      "componentType": 5126,
+      "count": 1829,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 2304,
+      "componentType": 5125,
+      "count": 4695,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 50808,
+      "componentType": 5126,
+      "count": 792,
+      "max": [
+        457.90386962890625,
+        583.828125,
+        551.0551147460938
+      ],
+      "min": [
+        -455.6580810546875,
+        -682.2000122070313,
+        -240.7608642578125
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 60312,
+      "componentType": 5126,
+      "count": 792,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 16936,
+      "componentType": 5126,
+      "count": 792,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 21084,
+      "componentType": 5125,
+      "count": 1188,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 69816,
+      "componentType": 5126,
+      "count": 14319,
+      "max": [
+        473.9618835449219,
+        943.9244995117188,
+        781.1913452148438
+      ],
+      "min": [
+        -472.2357177734375,
+        -880.99365234375,
+        -251.23126220703125
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 241644,
+      "componentType": 5126,
+      "count": 14319,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 33872,
+      "componentType": 5126,
+      "count": 14319,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 23272,
+      "componentType": 5126,
+      "count": 14319,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 25836,
+      "componentType": 5125,
+      "count": 26112,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 413472,
+      "componentType": 5126,
+      "count": 1822,
+      "max": [
+        462.0578308105469,
+        588.3515625,
+        720.7467651367188
+      ],
+      "min": [
+        -481.1005859375,
+        -906.1092529296875,
+        -263.6441345214844
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 435336,
+      "componentType": 5126,
+      "count": 1822,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 262976,
+      "componentType": 5126,
+      "count": 1822,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 137824,
+      "componentType": 5126,
+      "count": 1822,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 130284,
+      "componentType": 5125,
+      "count": 5364,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 457200,
+      "componentType": 5126,
+      "count": 1628,
+      "max": [
+        522.326171875,
+        649.1013793945313,
+        757.7943725585938
+      ],
+      "min": [
+        -522.2325439453125,
+        -910.185302734375,
+        318.78289794921875
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 476736,
+      "componentType": 5126,
+      "count": 1628,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 152400,
+      "componentType": 5126,
+      "count": 1628,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 151740,
+      "componentType": 5125,
+      "count": 3324,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 496272,
+      "componentType": 5126,
+      "count": 1299,
+      "max": [
+        461.9798278808594,
+        943.40185546875,
+        626.3226318359375
+      ],
+      "min": [
+        -471.0074157714844,
+        -685.1368408203125,
+        -140.7535400390625
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 511860,
+      "componentType": 5126,
+      "count": 1299,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 292128,
+      "componentType": 5126,
+      "count": 1299,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 165424,
+      "componentType": 5126,
+      "count": 1299,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 165036,
+      "componentType": 5125,
+      "count": 4230,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "generator": "fab-model-conversion",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 181956,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 175816,
+      "byteOffset": 181956,
+      "byteStride": 8,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 527448,
+      "byteOffset": 357772,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 312912,
+      "byteOffset": 885220,
+      "byteStride": 16,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1198132,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/modernhouse_bigbrick_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_bigbrick_shader_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/modernhouse_bigbrick_shader_normal.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_cement_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_cement_shader_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/modernhouse_cement_shader_normal.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_glasses_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_glasses_shader_metallicRoughness.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_iron_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_iron_shader_metallicRoughness.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_iron_shader_normal.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_plywood_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_plywood_shader_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/modernhouse_plywood_shader_normal.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_roof_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_roof_shader_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/modernhouse_smallbricks_shader_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/modernhouse_smallbricks_shader_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/modernhouse_smallbricks_shader_normal.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "modernhouse_bigbrick_shader",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "modernhouse_cement_shader",
+      "normalTexture": {
+        "index": 5
+      },
+      "occlusionTexture": {
+        "index": 4
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 4
+        }
+      }
+    },
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "name": "modernhouse_glasses_shader",
+      "occlusionTexture": {
+        "index": 7
+      },
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          0.6262876229718033
+        ],
+        "baseColorTexture": {
+          "index": 6
+        },
+        "metallicRoughnessTexture": {
+          "index": 7
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "modernhouse_iron_shader",
+      "normalTexture": {
+        "index": 10
+      },
+      "occlusionTexture": {
+        "index": 9
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 8
+        },
+        "metallicRoughnessTexture": {
+          "index": 9
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "modernhouse_plywood_shader",
+      "normalTexture": {
+        "index": 13
+      },
+      "occlusionTexture": {
+        "index": 12
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 11
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 12
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "modernhouse_roof_shader",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 14
+        },
+        "metallicRoughnessTexture": {
+          "index": 15
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "modernhouse_smallbricks_shader",
+      "normalTexture": {
+        "index": 18
+      },
+      "occlusionTexture": {
+        "index": 17
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 16
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 17
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Object_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_1",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_2",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 11,
+            "POSITION": 10,
+            "TEXCOORD_0": 12
+          },
+          "indices": 13,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_3",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 15,
+            "POSITION": 14,
+            "TANGENT": 16,
+            "TEXCOORD_0": 17
+          },
+          "indices": 18,
+          "material": 3,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_4",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 20,
+            "POSITION": 19,
+            "TANGENT": 21,
+            "TEXCOORD_0": 22
+          },
+          "indices": 23,
+          "material": 4,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_5",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 25,
+            "POSITION": 24,
+            "TEXCOORD_0": 26
+          },
+          "indices": 27,
+          "material": 5,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_6",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 29,
+            "POSITION": 28,
+            "TANGENT": 30,
+            "TEXCOORD_0": 31
+          },
+          "indices": 32,
+          "material": 6,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "name": "modern_house.obj.cleaner.materialmerger.gles"
+    },
+    {
+      "mesh": 0,
+      "name": "Object_2"
+    },
+    {
+      "mesh": 1,
+      "name": "Object_3"
+    },
+    {
+      "mesh": 2,
+      "name": "Object_4"
+    },
+    {
+      "mesh": 3,
+      "name": "Object_5"
+    },
+    {
+      "mesh": 4,
+      "name": "Object_6"
+    },
+    {
+      "mesh": 5,
+      "name": "Object_7"
+    },
+    {
+      "mesh": 6,
+      "name": "Object_8"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    },
+    {
+      "sampler": 0,
+      "source": 6
+    },
+    {
+      "sampler": 0,
+      "source": 7
+    },
+    {
+      "sampler": 0,
+      "source": 8
+    },
+    {
+      "sampler": 0,
+      "source": 9
+    },
+    {
+      "sampler": 0,
+      "source": 10
+    },
+    {
+      "sampler": 0,
+      "source": 11
+    },
+    {
+      "sampler": 0,
+      "source": 12
+    },
+    {
+      "sampler": 0,
+      "source": 13
+    },
+    {
+      "sampler": 0,
+      "source": 14
+    },
+    {
+      "sampler": 0,
+      "source": 15
+    },
+    {
+      "sampler": 0,
+      "source": 16
+    },
+    {
+      "sampler": 0,
+      "source": 17
+    },
+    {
+      "sampler": 0,
+      "source": 18
+    }
+  ]
+}

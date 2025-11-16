@@ -4,15 +4,15 @@
 	let mode = $state('manual');
 	let actionLink = $derived(mode == 'manual' ? '/?/createTask' : '/?/generateTask');
 	/*
+	let mode = $state('generate');
+	let actionLink = $derived(mode == 'manual' ? '/?/createEntry' : '/?/generateEntry');
 	function toggle() {
 		mode = mode == 'manual' ? 'generate' : 'manual';
 	}
 		*/
 </script>
 
-<form method="POST" action={actionLink} style="font-family: 'Courier New', monospace;">
-	<!--<button type="button" onclick={toggle}>Toggle Mode</button>  -->
-	 
+<form method="POST" action={actionLink} style="font-family: 'Courier New', monospace;">	 
 	<div class="slider">
 		<ButtonSlider
 			left="manual"
@@ -20,11 +20,11 @@
 			bind:selected={mode}
 		/>	
 	</div>
-	<label>
-		Task
-		<input class="tasklabel" name="task" type="text"/>
-	</label>
 	{#if mode == 'manual'}
+	<label>
+			Journal Entry
+			<input name="entry" type="text" />
+		</label>
 		<div class="xp-entry grid grid-cols-2 gap-2" style="width:450px">
 			<div>
 				<label class="label">
@@ -50,21 +50,16 @@
 	{:else}
 		<div class="xp-generation">
 			<label class="label">
-				Description
+				Tell me about your day
 				<input name="description" type="text" style="width:450px; height:50px"/>
-			</label>
-			<label class="label">
-				Estimated Duration
-				<input name="duration" type="number" />
 			</label>
 		</div>
 	{/if}
-	<label class="label">
-		Due Date
-		<input name="dueDate" type="date" />
+		<label>
+		Date
+		<input name="entryDate" type="date" value={new Date().toISOString().slice(0, 10)} />
 	</label>
-	<button class="btn-primary">{#if mode == 'manual'}Create Task{:else}Generate Task{/if}</button
-	>
+	<button class="btn-primary">{#if mode == 'manual'}Create Task{:else}Generate Task{/if}</button>
 </form>
 
 <style>

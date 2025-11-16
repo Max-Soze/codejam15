@@ -1,79 +1,123 @@
 import type { PageServerLoad, Actions } from './$types';
 import { mongo } from '$lib/server/mongo';
-import { ObjectId } from 'mongodb';
+import { roboFace, systemPrompt, entrySchema } from '$lib/gemini';
+import { zodToJsonSchema } from 'zod-to-json-schema';
+
+async function makeEntry(
+	social: number,
+	health: number,
+	discipline: number,
+	intellect: number,
+	entry: string,
+	entryDate: string
+) {
+	const client = await mongo;
+	const entries = client.db('TaskTown').collection('entries');
+	const users = client.db('TaskTown').collection('users');
+	let newEntry = {
+		journalEntry: entry,
+		xpSocial: social,
+		xpHealth: health,
+		xpDiscipline: discipline,
+		xpIntellect: intellect,
+		entryDate: entryDate
+	};
+	await entries.insertOne(newEntry);
+	await users.updateOne(
+		{},
+		{
+			$inc: {
+				xpTotal: social + health + discipline + intellect,
+				xpSocial: social,
+				xpHealth: health,
+				xpDiscipline: discipline,
+				xpIntellect: intellect
+			},
+			$set: {
+				lastEntry: new Date().toISOString().slice(0, 10)
+			}
+		}
+	);
+}
 
 export const load: PageServerLoad = async () => {
-	// Load tasks from Mongo
+	let currentDay = new Date();
+
+	// Load entries from Mongo
 	const client = await mongo;
-	const database = client.db('TaskTown');
-	const tasks = database.collection('tasks');
-	let count = await tasks.countDocuments();
-	let allTasks = await tasks.find({ complete: false }).toArray();
-	let taskList = JSON.parse(JSON.stringify(allTasks));
+	const entries = client.db('TaskTown').collection('entries');
+	const users = client.db('TaskTown').collection('users');
+	let allEntries = await entries.find({}).toArray();
+	let entryList = JSON.parse(JSON.stringify(allEntries));
+	let count = entryList.length;
 
 	// Load User Data from Mongo
-	let userData = await database.collection('users').findOne({});
+	let userData = await users.findOne({});
+	if (!userData) {
+		users.insertOne({
+			xpTotal: 0,
+			xpSocial: 0,
+			xpHealth: 0,
+			xpDiscipline: 0,
+			xpIntellect: 0,
+			lastEntry: null,
+			lastDecayed: null
+		});
+		userData = await users.findOne({});
+	}
 	let user = JSON.parse(JSON.stringify(userData));
-	return { count, taskList, user };
+	return { entryList, user, count };
 };
 
 export const actions = {
-	createTask: async ({ request }) => {
-		const client = await mongo;
-		const tasks = client.db('TaskTown').collection('tasks');
-		let taskData = await request.formData();
-		let newTask = {
-			task: taskData.get('task'),
-			complete: false,
-			xpSocial: taskData.get('xpSocial'),
-			xpHealth: taskData.get('xpHealth'),
-			xpDiscipline: taskData.get('xpDiscipline'),
-			xpIntellect: taskData.get('xpIntellect'),
-			dueDate: taskData.get('dueDate')
-		};
-		await tasks.insertOne(newTask);
+	createEntry: async ({ request }) => {
+		let entryData = await request.formData();
+		let social = Number(entryData.get('xpSocial'));
+		let health = Number(entryData.get('xpHealth'));
+		let discipline = Number(entryData.get('xpDiscipline'));
+		let intellect = Number(entryData.get('xpIntellect'));
+		await makeEntry(
+			social,
+			health,
+			discipline,
+			intellect,
+			entryData.get('entry')?.toString() || '',
+			entryData.get('entryDate')?.toString() || new Date().toISOString().slice(0, 10)
+		);
 	},
 
-	completeTask: async ({ request }) => {
-		const client = await mongo;
-		const tasks = client.db('TaskTown').collection('tasks');
+	generateEntry: async ({ request }) => {
 		let data = await request.formData();
-		let id = data.get('id')?.toString();
-		let xpSocial = Number(data.get('xpSocial'));
-		let xpHealth = Number(data.get('xpHealth'));
-		let xpDiscipline = Number(data.get('xpDiscipline'));
-		let xpIntellect = Number(data.get('xpIntellect'));
-		if (
-			id == null ||
-			xpHealth == null ||
-			xpSocial == null ||
-			xpDiscipline == null ||
-			xpIntellect == null
-		) {
+		let description = data.get('description');
+		let prompt: string;
+		if (!description) {
 			return;
+		} else {
+			prompt = description.toString();
 		}
-		await tasks.updateOne({ _id: new ObjectId(id) }, { $set: { complete: true } });
-		await client
-			.db('TaskTown')
-			.collection('users')
-			.updateOne(
-				{},
-				{
-					$inc: {
-						xpSocial: xpSocial,
-						xpHealth: xpHealth,
-						xpDiscipline: xpDiscipline,
-						xpIntellect: xpIntellect,
-						xpTotal: xpSocial + xpHealth + xpDiscipline + xpIntellect
-					}
-				}
-			);
-	},
+		const response = await roboFace.models.generateContent({
+			model: 'gemini-flash-latest',
+			contents: prompt,
+			config: {
+				responseMimeType: 'application/json',
+				responseJsonSchema: zodToJsonSchema(entrySchema),
+				systemInstruction: systemPrompt
+			}
+		});
 
-	generateTask: async ({ request }) => {
-		const client = await mongo;
-		const tasks = client.db('TaskTown').collection('tasks');
-		let data = await request.formData();
-		console.log('generated task');
+		if (response.text == undefined) {
+			console.log('Failed to generate model response.');
+		} else {
+			const entry = entrySchema.parse(JSON.parse(response.text));
+			let entryDate = data.get('entryDate')?.toString() || new Date().toISOString().slice(0, 10);
+			await makeEntry(
+				entry.social_points,
+				entry.health_points,
+				entry.discipline_points,
+				entry.intellect_points,
+				entry.journal_entry,
+				entryDate
+			);
+		}
 	}
 } satisfies Actions;
