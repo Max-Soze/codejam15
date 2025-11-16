@@ -5,16 +5,40 @@ import { roboFace, systemPrompt, pointSchema } from '$lib/gemini';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 
 export const load: PageServerLoad = async () => {
+	const currentDay = new Date();
+
 	// Load tasks from Mongo
 	const client = await mongo;
-	const database = client.db('TaskTown');
-	const tasks = database.collection('tasks');
+	const tasks = client.db('TaskTown').collection('tasks');
+	const users = client.db('TaskTown').collection('users');
 	let count = await tasks.countDocuments();
 	let allTasks = await tasks.find({ complete: false }).toArray();
 	let taskList = JSON.parse(JSON.stringify(allTasks));
 
 	// Load User Data from Mongo
-	let userData = await database.collection('users').findOne({});
+	let userData = await users.findOne({});
+	if (!userData) {
+		users.insertOne({
+			xpTotal: 0,
+			xpSocial: 0,
+			xpHealth: 0,
+			xpDiscipline: 0,
+			xpIntellect: 0,
+			lastSocial: 0,
+			lastHealth: 0,
+			lastDiscipline: 0,
+			lastIntellect: 0,
+			streakSocial: 0,
+			streakHealth: 0,
+			streakDiscipline: 0,
+			streakIntellect: 0,
+			decayedSocial: 0,
+			decayedHealth: 0,
+			decayedDiscipline: 0,
+			decayedIntellect: 0
+		});
+		userData = await users.findOne({});
+	}
 	let user = JSON.parse(JSON.stringify(userData));
 	return { count, taskList, user };
 };
