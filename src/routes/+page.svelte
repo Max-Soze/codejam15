@@ -4,9 +4,9 @@
 	import TaskForm from '$lib/components/TaskForm.svelte';
 	import Button2 from '$lib/components/Button2.svelte';
 	import Entry from '$lib/components/Entry.svelte';
+	import Stats from '$lib/components/Stats.svelte';
 	import { T, Canvas } from '@threlte/core';
 	import City from './City.svelte';
-	import { Button, Pane } from 'svelte-tweakpane-ui';
 	import { type CameraControlsRef } from '@threlte/extras';
 	import { type Mesh, MathUtils } from 'three';
 
@@ -75,7 +75,14 @@
 		{/if}
 	</div>
 	<div class="right_panel">
-		<div class="top_panel"></div>
+		<div class="top_panel">
+			<Stats
+				health={Number(data.user.xpHealth)}
+				social={Number(data.user.xpSocial)}
+				discipline={Number(data.user.xpDiscipline)}
+				intellect={Number(data.user.xpIntellect)}
+			/>
+		</div>
 		<div class="bottom_panel">
 			<Canvas>
 				<City
