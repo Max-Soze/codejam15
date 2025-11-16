@@ -36,7 +36,7 @@
 <br />
 <p>There are currently {data.count} tasks registered.</p>
 -->
-<div class="container">
+<div class="contain">
 	<div class="left_panel">
 		<Button2 onClick={() => (open = true)} text="Create New Entry"/>
 		<p class="normal_text">You have made {data.count} entries!</p>
@@ -58,7 +58,9 @@
 						discipline={entry.xpDiscipline}
 						intellect={entry.xpIntellect}
 					/>
-					<button onclick={() => (entryVisibility[i] = false)}>Close</button>
+					<div class="centered">
+						<Button2 onClick={() => (entryVisibility[i] = false)} text="Close"/>
+					</div>
 				</Popup>
 				</div>
 			{/if}
@@ -93,9 +95,9 @@
 		left:10px;
 		
 	}
-	.container{
+	.contain{
 		height:100vh;
-		width:100%;
+		width:100vw;
 		display: grid;
 		grid-template-columns: 2fr 5fr;
 		font-family: 'Courier New', Courier, monospace;
@@ -170,6 +172,10 @@
 			position: absolute;
 			z-index: 1;
 		}
+	.centered{
+		position:relative;
+		left:28%;
+	}	
 
 	
 </style>
