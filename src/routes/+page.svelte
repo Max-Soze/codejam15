@@ -119,17 +119,26 @@
 		grid-template-columns: 2fr 5fr;
 		font-family: 'Courier New', Courier, monospace;
 		color: var(--color-yellow-800);
+		background-color: var(--color-yellow-800);
 	}
 	.left_panel {
 		background-color: var(--color-bg);
+		outline: 3px solid var(--color-yellow-800);    
+    	outline-offset: -3px;    
+		border-radius: 20px; 
 
 		min-width: 200px;
 	}
 	.right_panel {
-		background-color: white;
+		background-color: var(--color-yellow-800);
 		display: grid;
 		grid-template-rows: 1fr 4fr;
+		height:100%;
 		.top_panel {
+		background-color: var(--color-bg);
+		outline: 3px solid var(--color-yellow-800);    
+    	outline-offset: -3px;    
+		border-radius: 20px; 
 		}
 		.bottom_panel {
 			background-color: aquamarine;
