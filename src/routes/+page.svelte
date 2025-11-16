@@ -38,7 +38,9 @@
 -->
 <div class="contain">
 	<div class="left_panel">
-		<Button2 onClick={() => (open = true)} text="Create New Entry"/>
+		<div class="please_center">
+			<Button2 onClick={() => (open = true)} text="Create New Entry"/>
+		</div>
 		<p class="normal_text">You have made {data.count} entries!</p>
 		
 	
@@ -90,6 +92,13 @@
 
 
 <style>
+	.please_center{
+		width:85%;
+
+
+		
+
+	}
 	.normal_text{
 		position:relative;
 		left:10px;
