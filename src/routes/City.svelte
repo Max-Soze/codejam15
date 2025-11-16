@@ -48,14 +48,19 @@
     "/houses/house_1/house_1.gltf",
     "/houses/house_2/house_2.gltf",
     "/houses/house_3/house_3.gltf",
-    "/houses/house_4/house_4.gltf",
     "/houses/house_5/house_5.gltf"
   ];
 
 
   let totalXp = health + discipline + intellect + social;// Should we encase in $state()?
+
   // Health level (max of 5)
-  let healthLvl = $state(Math.floor(health / 10) > 5 ? 5 : Math.floor(health / 10));
+  let healthLvl: number;
+  if (health < 50 ) healthLvl = 0;
+  else if (health < 150) healthLvl = 1;
+  else if (health < 300) healthLvl = 2;
+  else if (health < 500) healthLvl = 3;
+  else healthLvl = 4;
 
   //Generation of the plan for the position of each house
   let nbh_count: number;
@@ -128,4 +133,7 @@
     {/await}
 </T.Mesh>
 
-<Environment url="/textures/daySky.jpg" isBackground />
+<Environment 
+  url="/textures/daySky.jpg"
+  isBackground 
+/>
