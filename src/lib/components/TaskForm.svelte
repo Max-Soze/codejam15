@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ButtonSlider from './ButtonSlider.svelte';
 
-	let mode = $state('manual');
+	let mode = $state('automatic');
 	let actionLink = $derived(mode == 'manual' ? '/?/createEntry' : '/?/generateEntry');
 </script>
 
@@ -12,7 +12,7 @@
 	{#if mode == 'manual'}
 		<label>
 			Journal Entry
-			<input name="entry" type="text" style="width:450px" />
+			<input name="entry" type="text" style="width:450px; height:50px" />
 		</label>
 		<div class="xp-entry grid grid-cols-2 gap-2" style="width:450px">
 			<div>
@@ -40,7 +40,7 @@
 		<div class="xp-generation">
 			<label class="label">
 				Tell me about your day
-				<input name="description" type="text" style="width:450px; height:50px" />
+				<input name="description" type="text" style="width:450px; height:200px" />
 			</label>
 		</div>
 	{/if}

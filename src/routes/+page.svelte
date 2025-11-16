@@ -53,6 +53,9 @@
 			{#if entryVisibility[i]}
 				<div class="popup">
 					<Popup>
+						<div class="lefted">
+							<Button2 onClick={() => (entryVisibility[i] = false)} text="Close" />
+						</div>
 						<Entry
 							id={entry._id}
 							date={entry.entryDate}
@@ -62,9 +65,7 @@
 							discipline={entry.xpDiscipline}
 							intellect={entry.xpIntellect}
 						/>
-						<div class="centered">
-							<Button2 onClick={() => (entryVisibility[i] = false)} text="Close" />
-						</div>
+						
 					</Popup>
 				</div>
 			{/if}
@@ -123,7 +124,7 @@
 	.left_panel {
 		background-color: var(--color-bg);
 		outline: 3px solid var(--color-yellow-800);    
-    	outline-offset: -3px;    
+    	outline-offset: -2.5px;    
 		border-radius: 20px; 
 
 		min-width: 200px;
@@ -139,7 +140,7 @@
 	.top_panel {
 		background-color: var(--color-amber-50);
 		outline: 3px solid var(--color-yellow-800);    
-		outline-offset: -3px;    
+		outline-offset: -2.5px;    
 		border-radius: 20px; 
 	}
 	.bottom_panel {
@@ -193,6 +194,7 @@
 	.popup {
 		position: absolute;
 		z-index: 1;
+
 	}
 	.container {
 		display: flex;
@@ -212,8 +214,9 @@
 		position: absolute;
 		z-index: 1;
 	}
-	.centered {
+	.lefted {
 		position: relative;
-		left: 28%;
+		left: 0px;
+		margin-right: 220px;
 	}
 </style>
