@@ -37,7 +37,9 @@
 -->
 <div class="contain">
 	<div class="left_panel">
-		<Button2 onClick={() => (open = true)} text="Create New Entry" />
+		<div class="please_center">
+			<Button2 onClick={() => (open = true)} text="Create New Entry"/>
+		</div>
 		<p class="normal_text">You have made {data.count} entries!</p>
 
 		{#each data.entryList as entry, i}
@@ -99,6 +101,13 @@
 </div>
 
 <style>
+	.please_center{
+		width:85%;
+
+
+		
+
+	}
 	.normal_text {
 		position: relative;
 		left: 10px;
@@ -163,6 +172,24 @@
 		cursor: not-allowed;
 	}
 
+	.btn-primary:hover {
+		@media (hover: hover) {
+			background-color: var(--color-hover);
+		}
+	}
+	.btn-primary:active {
+		transform: scale(0.95);
+	}
+	.popup {
+		position: absolute;
+		z-index: 1;
+	}
+	.container {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 100vh; /* full height */
+	}
 	.btn-primary:hover {
 		@media (hover: hover) {
 			background-color: var(--color-hover);
