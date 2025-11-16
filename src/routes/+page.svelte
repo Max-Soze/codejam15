@@ -4,12 +4,10 @@
 	import TaskForm from '$lib/components/TaskForm.svelte';
 	import Button2 from '$lib/components/Button2.svelte';
 	import Entry from '$lib/components/Entry.svelte';
-	import { T, Canvas, useTask, useThrelte } from '@threlte/core';
-	import Scene1 from './scene1.svelte';
-	import Scene2 from './scene2.svelte';
+	import { T, Canvas } from '@threlte/core';
 	import City from './City.svelte';
-	import { Button, Checkbox, Pane, Separator } from 'svelte-tweakpane-ui';
-	import { type CameraControlsRef, useTexture, Environment } from '@threlte/extras';
+	import { Button, Pane } from 'svelte-tweakpane-ui';
+	import { type CameraControlsRef } from '@threlte/extras';
 	import { type Mesh, MathUtils } from 'three';
 
 	let open = $state(false);
@@ -29,6 +27,7 @@
 		}
 	});
 </script>
+
 <!--
 {#each Object.entries(data.user) as [key, value]}
 	<p>{key}: {value}</p>
@@ -42,8 +41,7 @@
 			<Button2 onClick={() => (open = true)} text="Create New Entry"/>
 		</div>
 		<p class="normal_text">You have made {data.count} entries!</p>
-		
-	
+
 		{#each data.entryList as entry, i}
 			<br />
 			<button class="btn-primary" onclick={() => (entryVisibility[i] = true)}>
@@ -66,30 +64,36 @@
 				</Popup>
 				</div>
 			{/if}
-		{/each}	
-<br />
-
-		<br />
+		{/each}
 		{#if open}
-			<Popup>
-				<Button2 onClick={() => (open = false)} text="Close"/>
-				<TaskForm  />
-				
-			</Popup>
+			<div class="popup">
+				<Popup>
+					<Button2 onClick={() => (open = false)} text="Close" />
+					<TaskForm />
+				</Popup>
+			</div>
 		{/if}
 	</div>
 	<div class="right_panel">
-		<div class="top_panel">
-
-		</div>
+		<div class="top_panel"></div>
 		<div class="bottom_panel">
-			
+			<div class="container">
+				<div class="city">
+					<Canvas>
+						<City
+							bind:controls
+							bind:mesh
+							health={Number(data.user.xpHealth)}
+							discipline={Number(data.user.xpDiscipline)}
+							intellect={Number(data.user.xpIntellect)}
+							social={Number(data.user.xpSocial)}
+						/>
+					</Canvas>
+				</div>
+			</div>
 		</div>
-
 	</div>
 </div>
-
-
 
 <style>
 	.please_center{
@@ -112,27 +116,23 @@
 		font-family: 'Courier New', Courier, monospace;
 		color: var(--color-yellow-800);
 	}
-	.left_panel{
+	.left_panel {
 		background-color: var(--color-bg);
 
 		min-width: 200px;
 	}
-	.right_panel{
-		background-color:white;
-		display:grid;
+	.right_panel {
+		background-color: white;
+		display: grid;
 		grid-template-rows: 1fr 4fr;
-		.top_panel{
-			
-
-
+		.top_panel {
 		}
-		.bottom_panel{
+		.bottom_panel {
 			background-color: aquamarine;
-
 		}
-	}	
-	
-		.btn-primary {
+	}
+
+	.btn-primary {
 		/* Rounded borders */
 		border-radius: 10px;
 
@@ -148,9 +148,9 @@
 		border: 1px solid var(--color-yellow-800);
 
 		/*size*/
-		width:85%;
+		width: 85%;
 
-		/*animation*/	
+		/*animation*/
 		cursor: pointer;
 		transition: background-color 0.2s ease;
 
@@ -161,14 +161,31 @@
 		right: 20px;
 		bottom: 20px;
 		margin-bottom: 5px;
-		
-		}
+	}
 
-		.btn-primary:disabled {
-			opacity: 0.5;
-			cursor: not-allowed;
-		}
+	.btn-primary:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 
+	.btn-primary:hover {
+		@media (hover: hover) {
+			background-color: var(--color-hover);
+		}
+	}
+	.btn-primary:active {
+		transform: scale(0.95);
+	}
+	.popup {
+		position: absolute;
+		z-index: 1;
+	}
+	.container {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 100vh; /* full height */
+	}
 		.btn-primary:hover {
 			@media (hover: hover) {
 				background-color: var(--color-hover);
@@ -238,9 +255,9 @@
     height: 100vh; /* full height */
 }
 
-.container > div {
-    flex: 1;             /* each takes up 50% of the space */
-    height: 100%;
-    overflow: hidden;    /* prevents scrollbars if canvas overflows */
-}
-</style> -->
+	.container > div {
+		flex: 1; /* each takes up 50% of the space */
+		height: 100%;
+		overflow: hidden; /* prevents scrollbars if canvas overflows */
+	}
+</style>
