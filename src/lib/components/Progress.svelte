@@ -10,14 +10,16 @@
 
 <style>
     .progress{
-        width:100%;
+
+        width:90%;
         height:10px;
         background-color: beige;
-        border-radius: 2px;
+        border-radius: 20px;
         overflow: hidden;
     }
     .bar{
         height:100%;
         transition: width 0.25s ease;
+        border-radius: 20px;
     }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DiscreteInterpolant } from 'three';
 	import Progress from './Progress.svelte';
-	import Percentage from './Percentage.svelte';
+
 
 	let { social, health, discipline, intellect } = $props();
 </script>
