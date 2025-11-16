@@ -1,0 +1,147 @@
+<script lang="ts">
+	import { T } from '@threlte/core';
+	import {
+		interactivity,
+		CameraControls,
+		type CameraControlsRef,
+		useTexture,
+		Environment,
+		useGltf
+	} from '@threlte/extras';
+	import { Mesh, RepeatWrapping } from 'three';
+	import { cubicOut } from 'svelte/easing';
+	import { Tween } from 'svelte/motion';
+	import { getCategoryLevel, getTotalLevel } from '$lib/statLevel';
+
+	//List of props
+	let {
+		controls = $bindable(),
+		mesh = $bindable(),
+		health,
+		discipline,
+		intellect,
+		social
+	}: {
+		controls?: CameraControlsRef;
+		mesh?: Mesh;
+		health: number;
+		discipline: number;
+		intellect: number;
+		social: number;
+	} = $props();
+
+	//Generation of grass texture
+	const grassTexture = useTexture('/textures/grass.jpg');
+	grassTexture.then((tex) => {
+		tex.wrapS = tex.wrapT = RepeatWrapping;
+		tex.repeat.set(60, 60);
+	});
+
+	type HouseMap = Record<string, number[]>;
+
+	//Mapping of each house to how they should be scaled and shifted in y
+
+	const scaleShift: HouseMap = {
+		'/houses/house_0/house_0.gltf': [6, 0],
+		'/houses/house_1/house_1.gltf': [5, 0],
+		'/houses/house_2/house_2.gltf': [2, 0],
+		'/houses/house_3/house_3.gltf': [7.2, 0],
+		'/houses/house_4/house_4.gltf': [0.05, 2.5],
+		'/houses/house_5/house_5.gltf': [3, 11.5],
+		'/houses/house_6/house_6.gltf': [0.05, 0]
+	};
+	//List of used housed
+	const allHouses = [
+		'/houses/house_0/house_0.gltf',
+		'/houses/house_1/house_1.gltf',
+		'/houses/house_2/house_2.gltf',
+		'/houses/house_3/house_3.gltf',
+		'/houses/house_5/house_5.gltf'
+	];
+
+	let totalXp = health + discipline + intellect + social; // Should we encase in $state()?
+
+	// Health level (max of 5)
+	let healthLvl = getCategoryLevel(health);
+
+	// Discipline level (max of 5)
+	let disciplineLvl = $state(getCategoryLevel(discipline));
+	if (disciplineLvl == 0) disciplineLvl = 0.5;
+
+	//Generation of the plan for the position of each house
+	let totalLvl = getTotalLevel(totalXp);
+	let nbh_count: number;
+	switch (totalLvl) {
+		case 0:
+			nbh_count = 1;
+			break;
+		case 1:
+			nbh_count = 6;
+			break;
+		case 2:
+			nbh_count = 11;
+			break;
+		case 3:
+			nbh_count = 16;
+			break;
+		default:
+			nbh_count = 21;
+	}
+
+	function generateBuilds(count: number, houseOptions: Array<string>) {
+		const builds = [];
+		for (let i = 0; i < count; i++) {
+			let r = 50 * Math.sqrt(i);
+			builds.push({
+				house: houseOptions[healthLvl],
+				x: Math.sin((Math.PI * i * 11) / 30) * r,
+				z: Math.cos((Math.PI * i * 11) / 30) * r,
+				scale: new Tween(1, { duration: 300, easing: cubicOut })
+			});
+		}
+		return builds;
+	}
+
+	let builds = $derived(generateBuilds(nbh_count, allHouses));
+
+	interactivity();
+</script>
+
+<!-- 3D rendering of every house -->
+{#each builds as h}
+	{#await useGltf(h.house) then gltf}
+		<T
+			is={gltf.scene.clone()}
+			receiveShadow
+			castShadow
+			scale={h.scale.current * scaleShift[h.house][0] * 0.6}
+			onpointerenter={() => (h.scale.target *= 0.95)}
+			onpointerleave={() => (h.scale.target *= 20 / 19)}
+			position={[h.x, scaleShift[h.house][1] * 0.6, h.z]}
+		/>
+	{/await}
+{/each}
+
+<!-- Sun -->
+<T.PointLight intensity={1300 * disciplineLvl + 500} color={0xffff00} position={[-50, 70, -50]} />
+
+<!-- general lighting -->
+<T.AmbientLight intensity={disciplineLvl} color={0xffbbaa} />
+
+<!-- POV control -->
+<CameraControls
+	bind:ref={controls}
+	oncreate={(ref) => {
+		ref.setPosition(15, 20, 45);
+	}}
+/>
+
+<!-- Plane of grass -->
+<T.Mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
+	<T.CircleGeometry args={[260, 100]} />
+	{#await grassTexture then tex}
+		<T.MeshStandardMaterial map={tex} />
+	{/await}
+</T.Mesh>
+
+<Environment url="/textures/Sky.png" isBackground />
