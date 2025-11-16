@@ -49,19 +49,19 @@
 			</button>
 			{#if entryVisibility[i]}
 				<div class="popup">
-				<Popup>
-					<Entry
-						date={entry.entryDate}
-						journalEntry={entry.journalEntry}
-						social={entry.xpSocial}
-						health={entry.xpHealth}
-						discipline={entry.xpDiscipline}
-						intellect={entry.xpIntellect}
-					/>
-					<div class="centered">
-						<Button2 onClick={() => (entryVisibility[i] = false)} text="Close"/>
-					</div>
-				</Popup>
+					<Popup>
+						<Entry
+							date={entry.entryDate}
+							journalEntry={entry.journalEntry}
+							social={entry.xpSocial}
+							health={entry.xpHealth}
+							discipline={entry.xpDiscipline}
+							intellect={entry.xpIntellect}
+						/>
+						<div class="centered">
+							<Button2 onClick={() => (entryVisibility[i] = false)} text="Close" />
+						</div>
+					</Popup>
 				</div>
 			{/if}
 		{/each}
@@ -77,20 +77,16 @@
 	<div class="right_panel">
 		<div class="top_panel"></div>
 		<div class="bottom_panel">
-			<div class="container">
-				<div class="city">
-					<Canvas>
-						<City
-							bind:controls
-							bind:mesh
-							health={Number(data.user.xpHealth)}
-							discipline={Number(data.user.xpDiscipline)}
-							intellect={Number(data.user.xpIntellect)}
-							social={Number(data.user.xpSocial)}
-						/>
-					</Canvas>
-				</div>
-			</div>
+			<Canvas>
+				<City
+					bind:controls
+					bind:mesh
+					health={Number(data.user.xpHealth)}
+					discipline={Number(data.user.xpDiscipline)}
+					intellect={Number(data.user.xpIntellect)}
+					social={Number(data.user.xpSocial)}
+				/>
+			</Canvas>
 		</div>
 	</div>
 </div>
@@ -103,14 +99,13 @@
 		
 
 	}
-	.normal_text{
-		position:relative;
-		left:10px;
-		
+	.normal_text {
+		position: relative;
+		left: 10px;
 	}
-	.contain{
-		height:100vh;
-		width:100vw;
+	.contain {
+		height: 100vh;
+		width: 100vw;
 		display: grid;
 		grid-template-columns: 2fr 5fr;
 		font-family: 'Courier New', Courier, monospace;
@@ -186,78 +181,20 @@
 		width: 100%;
 		height: 100vh; /* full height */
 	}
-		.btn-primary:hover {
-			@media (hover: hover) {
-				background-color: var(--color-hover);
-			}
+	.btn-primary:hover {
+		@media (hover: hover) {
+			background-color: var(--color-hover);
 		}
-		.btn-primary:active {
-		transform: scale(0.95); 
-		}
-		.popup {
-			position: absolute;
-			z-index: 1;
-		}
-	.centered{
-		position:relative;
-		left:28%;
-	}	
-
-	
-</style>
-
-
-
-<!-- 
-<Pane
-  title="Movement"
-  position="fixed"
->
-    <Button
-        title="zoom in"
-        on:click={() => {
-        controls?.dolly(20, true)
-        }}
-    />
-    <Button
-        title="zoom out"
-        on:click={() => {
-        controls?.dolly(-20, true)
-        }}
-    />
-    <Button
-        title="turn left"
-        on:click={() => {
-        controls?.rotate(90 * MathUtils.DEG2RAD, 0, true)
-        }}
-    />
-    <Button
-        title="turn right"
-        on:click={() => {
-        controls?.rotate(-90 * MathUtils.DEG2RAD, 0, true)
-        }}
-    />
-</Pane>
-
-<div class='container'>
-    <div class="city">
-        <Canvas>
-            <City bind:controls bind:mesh />
-        </Canvas>
-    </div>
-</div>
-
-<style>
-    .container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100vh; /* full height */
-}
-
-	.container > div {
-		flex: 1; /* each takes up 50% of the space */
-		height: 100%;
-		overflow: hidden; /* prevents scrollbars if canvas overflows */
+	}
+	.btn-primary:active {
+		transform: scale(0.95);
+	}
+	.popup {
+		position: absolute;
+		z-index: 1;
+	}
+	.centered {
+		position: relative;
+		left: 28%;
 	}
 </style>
