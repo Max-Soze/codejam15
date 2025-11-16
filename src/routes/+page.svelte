@@ -38,10 +38,12 @@
 <button onclick={() => (open = true)}>Open</button>
 <br />
 {#if open}
+<div class="popup">
 	<Popup>
 		<TaskForm />
 		<button onclick={() => (open = false)}>Close</button>
 	</Popup>
+</div>
 {/if}
 
 {#each data.taskList as task}
@@ -60,7 +62,7 @@
 
 <Pane
   title="Movement"
-  position="fixed"
+  position="draggable"
 >
     <Button
         title="zoom in"
@@ -91,7 +93,14 @@
 <div class='container'>
     <div class="city">
         <Canvas>
-            <City bind:controls bind:mesh />
+            <City 
+                bind:controls
+                bind:mesh
+                health={Number(data.user.xpHealth)} 
+                discipline = {Number(data.user.xpDiscipline)}
+                intellect = {Number(data.user.xpIntellect)}
+                social = {Number(data.user.xpSocial)}
+                />
         </Canvas>
     </div>
 </div>
@@ -109,4 +118,10 @@
     height: 100%;
     overflow: hidden;    /* prevents scrollbars if canvas overflows */
 }
+
+.popup {
+    position: absolute;
+    z-index: 99;
+}
+
 </style>
