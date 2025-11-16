@@ -60,21 +60,29 @@
 
 	let totalXp = health + discipline + intellect + social; // Should we encase in $state()?
 
-	// Health level (max of 5)
-	let healthLvl: number;
-	if (health < 50) healthLvl = 0;
-	else if (health < 150) healthLvl = 1;
-	else if (health < 300) healthLvl = 2;
-	else if (health < 500) healthLvl = 3;
-	else healthLvl = 4;
+  // Health level (max of 5)
+  let healthLvl: number;
+  if (health < 50 ) healthLvl = 0;
+  else if (health < 150) healthLvl = 1;
+  else if (health < 300) healthLvl = 2;
+  else if (health < 500) healthLvl = 3;
+  else healthLvl = 4;
 
-	//Generation of the plan for the position of each house
-	let nbh_count: number;
-	if (totalXp < 100) nbh_count = 1;
-	else if (totalXp < 250) nbh_count = 6;
-	else if (totalXp < 500) nbh_count = 11;
-	else if (totalXp < 1000) nbh_count = 16;
-	else nbh_count = 21;
+  // Discipline level (max of 5)
+  let disciplineLvl = $state(0);
+  if (discipline < 50 ) disciplineLvl = 0;
+  else if (discipline < 150) disciplineLvl = 1;
+  else if (discipline < 300) disciplineLvl = 2.5;
+  else if (discipline < 500) disciplineLvl = 4;
+  else disciplineLvl = 5;
+
+  //Generation of the plan for the position of each house
+  let nbh_count: number;
+  if (totalXp < 100) nbh_count = 1;
+  else if (totalXp < 250) nbh_count = 6;
+  else if (totalXp < 500) nbh_count = 11;
+  else if (totalXp < 1000) nbh_count = 16;
+  else nbh_count = 21;
 
 	function generateBuilds(count: number, houseOptions: Array<string>) {
 		const builds = [];
@@ -111,10 +119,13 @@
 {/each}
 
 <!-- Sun -->
-<T.PointLight intensity={7000} color={0xffff00} position={[-50, 70, -50]} />
+<T.PointLight intensity={1300 * disciplineLvl + 500} color={0xffff00} position={[-50, 70, -50]} />
 
 <!-- general lighting -->
-<T.AmbientLight intensity={2} color={0xffffcc} />
+<T.AmbientLight
+    intensity={disciplineLvl}
+    color={0xFFBBAA}
+/>
 
 <!-- POV control -->
 <CameraControls
@@ -126,10 +137,13 @@
 
 <!-- Plane of grass -->
 <T.Mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-	<T.PlaneGeometry args={[500, 500]} />
-	{#await grassTexture then tex}
-		<T.MeshStandardMaterial map={tex} />
-	{/await}
+    <T.CircleGeometry args={[260, 100]} />
+    {#await grassTexture then tex}
+        <T.MeshStandardMaterial map={tex} />
+    {/await}
 </T.Mesh>
 
-<Environment url="/textures/daySky.jpg" isBackground />
+<Environment 
+  url="/textures/Sky.png"
+  isBackground
+/>
