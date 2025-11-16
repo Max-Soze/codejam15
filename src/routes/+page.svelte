@@ -130,19 +130,21 @@
 		min-width: 200px;
 	}
 	.right_panel {
-		background-color: var(--color-yellow-800);
+		
+		color: var(--color-yellow-800);
 		display: grid;
 		grid-template-rows: 1fr 4fr;
-		height:100%;
-		.top_panel {
-		background-color: var(--color-bg);
+		height:100%;	
+		
+	}
+	.top_panel {
+		background-color: var(--color-amber-50);
 		outline: 3px solid var(--color-yellow-800);    
-    	outline-offset: -3px;    
+		outline-offset: -3px;    
 		border-radius: 20px; 
-		}
-		.bottom_panel {
-			background-color: aquamarine;
-		}
+	}
+	.bottom_panel {
+		background-color: var(--color-yellow-800);
 	}
 
 	.btn-primary {

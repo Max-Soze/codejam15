@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { DiscreteInterpolant } from 'three';
+
 	import Progress from './Progress.svelte';
+	export let total: number;
+	export let social: number;
+	export let health: number;
+	export let discipline: number;
+	export let intellect: number;
 
 
-	let { total, social, health, discipline, intellect } = $props();
+	//let { total, social, health, discipline, intellect } = $props();
 </script>
 <div class="all">
 	<div>
@@ -32,11 +37,11 @@
 		<div>
 			<p>Discipline</p>
 			<p>
-				<Progress category="social" value={discipline} color="#f97316" />
+				<Progress category="discipline" value={discipline} color="#f97316" />
 			</p>
 			<p>Intellect</p>
 			<p>
-				<Progress category="health" value={intellect} color="#f97316" />
+				<Progress category="intellect" value={intellect} color="#f97316" />
 			</p>
 		</div>
 	</div>
@@ -45,8 +50,9 @@
 <style>
 	.title2 {
 		position: relative;
-		
-		left: 15px;
+		left:45%;
+
+
 		top: 10px;
 		font-weight: var(--font-weight-semibold);
 	}
@@ -62,6 +68,6 @@
 	}
 	.all{
 		align-items: center;
-		background-color: var(--color-amber-50);
+
 	}
 </style>
