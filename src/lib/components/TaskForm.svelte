@@ -2,7 +2,7 @@
 	import ButtonSlider from "./ButtonSlider.svelte";
 
 	let mode = $state('manual');
-	let actionLink = $derived(mode == 'manual' ? '/?/createTask' : '/?/generateTask');
+	let actionLink = $derived(mode == 'manual' ? '/?/createEntry' : '/?/generateEntry');
 	/*
 	let mode = $state('generate');
 	let actionLink = $derived(mode == 'manual' ? '/?/createEntry' : '/?/generateEntry');
@@ -21,9 +21,9 @@
 		/>	
 	</div>
 	{#if mode == 'manual'}
-	<label>
+		<label >
 			Journal Entry
-			<input name="entry" type="text" />
+			<input name="entry" type="text" style="width:450px" />
 		</label>
 		<div class="xp-entry grid grid-cols-2 gap-2" style="width:450px">
 			<div>
@@ -59,7 +59,7 @@
 		Date
 		<input name="entryDate" type="date" value={new Date().toISOString().slice(0, 10)} />
 	</label>
-	<button class="btn-primary">{#if mode == 'manual'}Create Task{:else}Generate Task{/if}</button>
+	<button class="btn-primary">{#if mode == 'manual'}Create Entry{:else}Generate Entry{/if}</button>
 </form>
 
 <style>

@@ -39,6 +39,32 @@
 <div class="container">
 	<div class="left_panel">
 		<Button2 onClick={() => (open = true)} text="Create New Entry"/>
+		<p class="normal_text">You have made {data.count} entries!</p>
+		
+	
+		{#each data.entryList as entry, i}
+			<br />
+			<button class="btn-primary" onclick={() => (entryVisibility[i] = true)}>
+				{entry.entryDate}
+			</button>
+			{#if entryVisibility[i]}
+				<div class="popup">
+				<Popup>
+					<Entry
+						date={entry.entryDate}
+						journalEntry={entry.journalEntry}
+						social={entry.xpSocial}
+						health={entry.xpHealth}
+						discipline={entry.xpDiscipline}
+						intellect={entry.xpIntellect}
+					/>
+					<button onclick={() => (entryVisibility[i] = false)}>Close</button>
+				</Popup>
+				</div>
+			{/if}
+		{/each}	
+<br />
+
 		<br />
 		{#if open}
 			<Popup>
@@ -58,36 +84,22 @@
 
 	</div>
 </div>
-<p>You have made {data.count} entries!</p>
-<button onclick={() => (open = true)}>Open</button>
-<br />
 
-{#each data.entryList as entry, i}
-	<br />
-	<button onclick={() => (entryVisibility[i] = true)}>
-		{entry.entryDate}
-	</button>
-	{#if entryVisibility[i]}
-		<Popup>
-			<Entry
-				date={entry.entryDate}
-				journalEntry={entry.journalEntry}
-				social={entry.xpSocial}
-				health={entry.xpHealth}
-				discipline={entry.xpDiscipline}
-				intellect={entry.xpIntellect}
-			/>
-			<button onclick={() => (entryVisibility[i] = false)}>Close</button>
-		</Popup>
-	{/if}
-{/each}
+
 
 <style>
+	.normal_text{
+		position:relative;
+		left:10px;
+		
+	}
 	.container{
 		height:100vh;
 		width:100%;
 		display: grid;
 		grid-template-columns: 2fr 5fr;
+		font-family: 'Courier New', Courier, monospace;
+		color: var(--color-yellow-800);
 	}
 	.left_panel{
 		background-color: var(--color-bg);
@@ -107,7 +119,59 @@
 			background-color: aquamarine;
 
 		}
-	}
+	}	
+	
+		.btn-primary {
+		/* Rounded borders */
+		border-radius: 10px;
+
+		/* Background*/
+		background-color: var(--color-bg);
+		padding: 10px 10px;
+
+		/* Text */
+		color: var(--color-yellow-800);
+
+		/* Outside the button */
+		box-shadow: var(--shadow-md);
+		border: 1px solid var(--color-yellow-800);
+
+		/*size*/
+		width:85%;
+
+		/*animation*/	
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+
+		/* position */
+		position: relative;
+		top: 20px;
+		left: 20px;
+		right: 20px;
+		bottom: 20px;
+		margin-bottom: 5px;
+		
+		}
+
+		.btn-primary:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+
+		.btn-primary:hover {
+			@media (hover: hover) {
+				background-color: var(--color-hover);
+			}
+		}
+		.btn-primary:active {
+		transform: scale(0.95); 
+		}
+		.popup {
+			position: absolute;
+			z-index: 1;
+		}
+
+	
 </style>
 
 
