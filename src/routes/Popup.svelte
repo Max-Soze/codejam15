@@ -2,7 +2,7 @@
   import { T, useTask } from '@threlte/core';
   import { interactivity, OrbitControls,  Grid, CameraControls, type CameraControlsRef, useTexture, Environment, GLTF, useDraco, Instance, useGltf } from '@threlte/extras';
   import { Spring } from 'svelte/motion';
-  import { PointLight, Mesh, TextureLoader, PerspectiveCamera, MathUtils, Color } from 'three';
+  import { PointLight, Mesh, TextureLoader, PerspectiveCamera, MathUtils, Color, RepeatWrapping } from 'three';
   import { onMount } from 'svelte';
   import { cubicOut } from 'svelte/easing';
   import { Tween } from 'svelte/motion';
@@ -10,6 +10,12 @@
   function randomSign() {
     return Math.random() < 0.5 ? -1 : 1;
   }
+
+  const grassTexture = useTexture('/textures/grass.jpg');
+  grassTexture.then(tex => {
+  tex.wrapS = tex.wrapT = RepeatWrapping;
+  tex.repeat.set(10, 10);
+})
 
   //BUILDING CONSTRUCTOR
   const count = 40 // number of buildings
@@ -54,52 +60,14 @@
 
   let nbh_count = index > 5 ? index * 3 : 0;
 
-  let builds_0 = Array.from({ length: 0 }, () => ({
-    house: allHouses[0],
-    x: randomSign() * (Math.random() * 200 + 40),
-    z: randomSign() * (Math.random() * 200 + 40),
-    scale: new Tween(1, { duration: 300, easing: cubicOut }),
-  }));
-  let builds_1 = Array.from({ length: 0 }, () => ({
-    house: allHouses[1],
-    x: randomSign() * (Math.random() * 200 + 40),
-    z: randomSign() * (Math.random() * 200 + 40),
-    scale: new Tween(1, { duration: 300, easing: cubicOut }),
-  }));
-  let builds_2 = Array.from({ length: 0 }, () => ({
-    house: allHouses[2],
-    x: randomSign() * (Math.random() * 200 + 40),
-    z: randomSign() * (Math.random() * 200 + 40),
-    scale: new Tween(1, { duration: 300, easing: cubicOut }),
-  }));
-  let builds_3 = Array.from({ length: Math.floor((Math.random() + 0.5) * nbh_count * 4/9) }, () => ({
-    house: allHouses[3],
-    x: randomSign() * (Math.random() * 200 + 40),
-    z: randomSign() * (Math.random() * 200 + 40),
-    scale: new Tween(1, { duration: 300, easing: cubicOut }),
-  }));
-  let builds_4 = Array.from({ length: Math.floor((Math.random() + 0.5) * nbh_count * 3/9) }, () => ({
-    house: allHouses[4],
-    x: randomSign() * (Math.random() * 200 + 40),
-    z: randomSign() * (Math.random() * 200 + 40),
-    scale: new Tween(1, { duration: 300, easing: cubicOut }),
-  }));
-  let builds_5 = Array.from({ length: Math.floor((Math.random() + 0.5) * nbh_count * 2/9) }, () => ({
-    house: allHouses[5],
-    x: randomSign() * (Math.random() * 200 + 40),
-    z: randomSign() * (Math.random() * 200 + 40),
-    scale: new Tween(1, { duration: 300, easing: cubicOut }),
-  }));
-  let builds_6 = Array.from({ length: Math.floor((Math.random() + 0.5) * nbh_count * 1/9) }, () => ({
-    house: allHouses[6],
+  let builds = Array.from({ length: nbh_count }, () => ({
+    house: allHouses[Math.floor(Math.random()*3 + 3)],
     x: randomSign() * (Math.random() * 200 + 40),
     z: randomSign() * (Math.random() * 200 + 40),
     scale: new Tween(1, { duration: 300, easing: cubicOut }),
   }));
 
-  let initial_builds = [builds_0, builds_1, builds_2, builds_3, builds_4, builds_5, builds_6];
-  initial_builds[index].push(mainHouse);
-  const builds = initial_builds;
+  builds.push(mainHouse);
 
   console.log(builds);
 
@@ -115,20 +83,18 @@
   interactivity();
 </script>
 
-{#each builds as houseType, i}
-    {#each houseType as h, j}
+{#each builds as h, i}
     {#await useGltf(h.house) then gltf}
         <T
         is={gltf.scene.clone()}
         receiveShadow
         castShadow
-        scale= {h.scale.current * scaleShift[h.house][0]}
+        scale= {h.scale.current * scaleShift[h.house][0] * 0.6}
         onpointerenter={() => h.scale.target *= 0.9}
         onpointerleave={() => h.scale.target *= 10/9}
-        position={[h.x, scaleShift[h.house][1], h.z]}
+        position={[h.x, scaleShift[h.house][1] * 0.6, h.z]}
         />
     {/await}
-    {/each}
 {/each}
 
 <!-- {#each builds as houseType, i}
@@ -165,8 +131,10 @@
 />
 
 <T.Mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-    <T.PlaneGeometry args={[500, 500]} />
-    <T.MeshStandardMaterial color="#333" />
+    <T.PlaneGeometry args={[1000, 1000]} />
+    {#await grassTexture then tex}
+        <T.MeshStandardMaterial map={tex} />
+    {/await}
 </T.Mesh>
 
 <!-- {#each buildings as b}
