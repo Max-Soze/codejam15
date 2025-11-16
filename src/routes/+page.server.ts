@@ -1,6 +1,5 @@
 import type { PageServerLoad, Actions } from './$types';
 import { mongo } from '$lib/server/mongo';
-import { ObjectId } from 'mongodb';
 import { roboFace, systemPrompt, entrySchema } from '$lib/gemini';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 
@@ -33,6 +32,9 @@ async function makeEntry(
 				xpHealth: health,
 				xpDiscipline: discipline,
 				xpIntellect: intellect
+			},
+			$set: {
+				lastEntry: new Date().toISOString().slice(0, 10)
 			}
 		}
 	);
@@ -47,6 +49,7 @@ export const load: PageServerLoad = async () => {
 	const users = client.db('TaskTown').collection('users');
 	let allEntries = await entries.find({}).toArray();
 	let entryList = JSON.parse(JSON.stringify(allEntries));
+	let count = entryList.length;
 
 	// Load User Data from Mongo
 	let userData = await users.findOne({});
@@ -62,7 +65,7 @@ export const load: PageServerLoad = async () => {
 		userData = await users.findOne({});
 	}
 	let user = JSON.parse(JSON.stringify(userData));
-	return { entryList, user };
+	return { entryList, user, count };
 };
 
 export const actions = {

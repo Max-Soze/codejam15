@@ -1,8 +1,8 @@
 <script lang="ts">
-	let { _id, task, complete, xpSocial, xpDiscipline, xpHealth, xpIntellect, dueDate } = $props();
+	let { date, journalEntry, social, health, discipline, intellect } = $props();
 </script>
 
-<div class="task">
+<!-- <div class="task">
 	<p>{task}</p>
 	<p>{dueDate}</p>
 	<div>
@@ -19,4 +19,12 @@
 		<input name="xpIntellect" type="hidden" value={xpIntellect} />
 		<button>Comp</button>
 	</form>
+</div> -->
+<p>{new Date(date).toDateString()}</p>
+<div class="scores">
+	<p>{social}</p>
+	<p>{health}</p>
+	<p>{discipline}</p>
+	<p>{intellect}</p>
 </div>
+<p>Entry: {journalEntry}</p>

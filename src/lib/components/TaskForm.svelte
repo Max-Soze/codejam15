@@ -1,6 +1,6 @@
 <script lang="ts">
 	let mode = $state('generate');
-	let actionLink = $derived(mode == 'manual' ? '/?/createTask' : '/?/generateTask');
+	let actionLink = $derived(mode == 'manual' ? '/?/createEntry' : '/?/generateEntry');
 	function toggle() {
 		mode = mode == 'manual' ? 'generate' : 'manual';
 	}
@@ -8,11 +8,11 @@
 
 <form method="POST" action={actionLink}>
 	<button type="button" onclick={toggle}>Toggle Mode</button>
-	<label>
-		Task
-		<input name="task" type="text" />
-	</label>
 	{#if mode == 'manual'}
+		<label>
+			Journal Entry
+			<input name="entry" type="text" />
+		</label>
 		<div class="xp-entry">
 			<label>
 				Social XP
@@ -34,20 +34,16 @@
 	{:else}
 		<div class="xp-generation">
 			<label>
-				Description
+				Tell me about your day
 				<input name="description" type="text" />
-			</label>
-			<label>
-				Estimated Duration
-				<input name="duration" type="number" />
 			</label>
 		</div>
 	{/if}
 	<label>
-		Due Date
-		<input name="dueDate" type="date" />
+		Date
+		<input name="dueDate" type="date" value={new Date().toISOString().slice(0, 10)} />
 	</label>
 	<button
-		>{#if mode == 'manual'}Create Task{:else}Generate Task{/if}</button
+		>{#if mode == 'manual'}Create Entry{:else}Generate Entry{/if}</button
 	>
 </form>
