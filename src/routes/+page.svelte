@@ -73,33 +73,6 @@
 	<div class="right_panel">
 		<div class="top_panel"></div>
 		<div class="bottom_panel">
-			<Pane title="Movement" position="fixed">
-				<Button
-					title="zoom in"
-					on:click={() => {
-						controls?.dolly(20, true);
-					}}
-				/>
-				<Button
-					title="zoom out"
-					on:click={() => {
-						controls?.dolly(-20, true);
-					}}
-				/>
-				<Button
-					title="turn left"
-					on:click={() => {
-						controls?.rotate(90 * MathUtils.DEG2RAD, 0, true);
-					}}
-				/>
-				<Button
-					title="turn right"
-					on:click={() => {
-						controls?.rotate(-90 * MathUtils.DEG2RAD, 0, true);
-					}}
-				/>
-			</Pane>
-
 			<div class="container">
 				<div class="city">
 					<Canvas>
