@@ -61,7 +61,6 @@
 	let totalXp = health + discipline + intellect + social; // Should we encase in $state()?
 
   // Health level (max of 5)
-  health = 10;
   let healthLvl: number;
   if (health < 50 ) healthLvl = 0;
   else if (health < 150) healthLvl = 1;
@@ -70,7 +69,6 @@
   else healthLvl = 4;
 
   //Generation of the plan for the position of each house
-  totalXp = 10;
   let nbh_count: number;
   if (totalXp < 100) nbh_count = 1;
   else if (totalXp < 250) nbh_count = 6;
