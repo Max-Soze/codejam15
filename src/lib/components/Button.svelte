@@ -34,6 +34,8 @@
     left: 20px;
     right: 20px;
     bottom: 20px;
+    margin-bottom: 30px;
+    
 }
 
 .btn-primary:disabled {

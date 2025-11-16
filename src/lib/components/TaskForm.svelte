@@ -1,53 +1,155 @@
 <script lang="ts">
-	let mode = $state('generate');
+	import ButtonSlider from "./ButtonSlider.svelte";
+
+	let mode = $state('manual');
 	let actionLink = $derived(mode == 'manual' ? '/?/createTask' : '/?/generateTask');
+	/*
 	function toggle() {
 		mode = mode == 'manual' ? 'generate' : 'manual';
 	}
+		*/
 </script>
 
-<form method="POST" action={actionLink}>
-	<button type="button" onclick={toggle}>Toggle Mode</button>
+<form method="POST" action={actionLink} style="font-family: 'Courier New', monospace;">
+	<!--<button type="button" onclick={toggle}>Toggle Mode</button>  -->
+	 
+	<div class="slider">
+		<ButtonSlider
+			left="manual"
+			right="automatic"
+			bind:selected={mode}
+		/>	
+	</div>
 	<label>
 		Task
-		<input name="task" type="text" />
+		<input class="tasklabel" name="task" type="text"/>
 	</label>
 	{#if mode == 'manual'}
-		<div class="xp-entry">
-			<label>
-				Social XP
-				<input name="xpSocial" type="number" />
-			</label>
-			<label>
-				Health XP
-				<input name="xpHealth" type="number" />
-			</label>
-			<label>
-				Discipline XP
-				<input name="xpDiscipline" type="number" />
-			</label>
-			<label>
-				Intellect XP
-				<input name="xpIntellect" type="number" />
-			</label>
+		<div class="xp-entry grid grid-cols-2 gap-2" style="width:450px">
+			<div>
+				<label class="label">
+					Social XP
+					<input name="xpSocial" type="number" />
+				</label>
+				<label class="label">
+					Health XP
+					<input name="xpHealth" type="number" />
+				</label>
+			</div>
+			<div>
+				<label class="label">
+					Discipline XP
+					<input name="xpDiscipline" type="number" />
+				</label>
+				<label class="label">
+					Intellect XP
+					<input name="xpIntellect" type="number" />
+				</label>
+			</div>
 		</div>
 	{:else}
 		<div class="xp-generation">
-			<label>
+			<label class="label">
 				Description
-				<input name="description" type="text" />
+				<input name="description" type="text" style="width:450px; height:50px"/>
 			</label>
-			<label>
+			<label class="label">
 				Estimated Duration
 				<input name="duration" type="number" />
 			</label>
 		</div>
 	{/if}
-	<label>
+	<label class="label">
 		Due Date
 		<input name="dueDate" type="date" />
 	</label>
-	<button
-		>{#if mode == 'manual'}Create Task{:else}Generate Task{/if}</button
+	<button class="btn-primary">{#if mode == 'manual'}Create Task{:else}Generate Task{/if}</button
 	>
 </form>
+
+<style>
+	.slider{
+		position: relative;
+		left: 27%;
+		top:10px;
+
+	}
+	
+	form{
+		background-color: var(--color-bg);
+		color: var(--color-yellow-800);
+		height:400px;
+		width: 475px;
+		position:relative;
+	}
+	input{
+		border-radius: 10px;
+		border-width: 1.5px;
+		border-color: var(--color-yellow-800);
+		background-color: var(--color-amber-50);
+		position:relative;
+		left:0px;
+
+		display:flex;
+		
+		
+	}
+
+	label{
+		-ms-flex-align: start;
+		position:relative;
+		top:10px;
+		left:10px;
+		text-align:left;
+	
+
+		.tasklabel{
+			width:450px;
+		}
+	}
+
+	
+
+	.btn-primary {
+	/* Rounded borders */
+	border-radius: 40px;
+
+	/* Background*/
+	background-color: var(--color-bg);
+	padding: 10px 10px;
+
+	/* Text */
+	font-weight: var(--font-weight-semibold);
+	color: var(--color-yellow-800);
+
+	/* Outside the button */
+	box-shadow: var(--shadow-md);
+	border: 1px solid var(--color-yellow-800);
+
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+
+	/* position */
+	position: relative;
+	top:20px;
+	left: 305px;
+	right: 30px;
+	bottom: 20px;
+	}
+
+	.btn-primary:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.btn-primary:hover {
+		@media (hover: hover) {
+			background-color: var(--color-hover);
+		}
+	}
+	.btn-primary:active {
+	transform: scale(0.95); 
+	}
+	
+
+</style>

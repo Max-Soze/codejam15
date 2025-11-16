@@ -2,8 +2,8 @@
   import Button from '$lib/components/Button.svelte';
 	import Tasktile from '$lib/components/Tasktile.svelte';
   import MenuButton from '$lib/components/ButtonMenu.svelte';
-  import ButtonCheckmark from '$lib/components/ButtonCheckmark.svelte';
-
+  import ButtonSlider from '$lib/components/ButtonSlider.svelte';
+  let mode = "Automatic";
   type Task = {
     name: string;
     done: boolean;
@@ -30,13 +30,23 @@
     
 
         <div class ="text-area">
+          <ButtonSlider
+            left="Manual"
+            right="Automatic"
+            bind:selected={mode}
+          />
+
+          {#if mode == "Manual"}
+            <p> hi </p>
+
+          {:else}
+            <p> bye </p>
+
+          {/if}
           <MenuButton/>
           <Button text="hi"/>
           {#each tasks as task, i (i)}
             <div class="task-row flex items-center gap-2">
-              <ButtonCheckmark 
-                text="" 
-              />
               <Tasktile bind:TaskName={task.name} />
               <Button text="❌" onClick={() => removeTask(i)} />
             </div>
