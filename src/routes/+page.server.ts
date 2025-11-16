@@ -1,6 +1,8 @@
 import type { PageServerLoad, Actions } from './$types';
 import { mongo } from '$lib/server/mongo';
 import { ObjectId } from 'mongodb';
+import { roboFace, systemPrompt, pointSchema } from '$lib/gemini';
+import { zodToJsonSchema } from 'zod-to-json-schema';
 
 export const load: PageServerLoad = async () => {
 	// Load tasks from Mongo
@@ -74,6 +76,36 @@ export const actions = {
 		const client = await mongo;
 		const tasks = client.db('TaskTown').collection('tasks');
 		let data = await request.formData();
-		console.log('generated task');
+		let task = data.get('task');
+		let description = data.get('description');
+		let duration = data.get('description');
+
+		let prompt =
+			'Task: ' + task + '\n' + 'Description: ' + description + '\n' + 'Duration: ' + duration;
+		const response = await roboFace.models.generateContent({
+			model: 'gemini-2.5-flash',
+			contents: prompt,
+			config: {
+				responseMimeType: 'application/json',
+				responseJsonSchema: zodToJsonSchema(pointSchema),
+				systemInstruction: systemPrompt
+			}
+		});
+
+		if (response.text == undefined) {
+			console.log('Failed to generate model response.');
+		} else {
+			const assignment = pointSchema.parse(JSON.parse(response.text));
+			let newTask = {
+				task: task,
+				complete: false,
+				xpSocial: assignment.social_points,
+				xpHealth: assignment.health_points,
+				xpDiscipline: assignment.discipline_points,
+				xpIntellect: assignment.intellect_points,
+				dueDate: data.get('dueDate')
+			};
+			await tasks.insertOne(newTask);
+		}
 	}
 } satisfies Actions;
