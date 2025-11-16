@@ -6,7 +6,7 @@
     import { T, Canvas, useTask, useThrelte} from '@threlte/core';
     import Scene1 from './scene1.svelte';
     import Scene2 from './scene2.svelte';
-    import Popup from './Popup.svelte';
+    import City from './City.svelte';
     import { Button, Checkbox, Pane, Separator } from 'svelte-tweakpane-ui';
     import {type CameraControlsRef, useTexture, Environment } from '@threlte/extras'
     import { type Mesh, MathUtils } from 'three'
@@ -91,7 +91,7 @@
 <div class='container'>
     <div class="city">
         <Canvas>
-            <Popup bind:controls bind:mesh />
+            <City bind:controls bind:mesh />
         </Canvas>
     </div>
 </div>

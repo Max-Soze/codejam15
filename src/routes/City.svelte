@@ -14,7 +14,7 @@
   const grassTexture = useTexture('/textures/grass.jpg');
   grassTexture.then(tex => {
   tex.wrapS = tex.wrapT = RepeatWrapping;
-  tex.repeat.set(10, 10);
+  tex.repeat.set(30, 30);
 })
 
   //BUILDING CONSTRUCTOR
