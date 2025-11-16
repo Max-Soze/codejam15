@@ -50,7 +50,15 @@
 	</div>
 	<div class="right_panel">
 		<div class="top_panel"></div>
-		<div class="bottom_panel"></div>
+		<div class="bottom_panel">
+			<div class="container">
+				<div class="city">
+					<Canvas>
+						<City bind:controls bind:mesh />
+					</Canvas>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <p>You have made {data.count} entries!</p>
@@ -76,60 +84,6 @@
 	{/if}
 {/each}
 
-<!-- 
-<Pane
-  title="Movement"
-  position="fixed"
->
-    <Button
-        title="zoom in"
-        on:click={() => {
-        controls?.dolly(20, true)
-        }}
-    />
-    <Button
-        title="zoom out"
-        on:click={() => {
-        controls?.dolly(-20, true)
-        }}
-    />
-    <Button
-        title="turn left"
-        on:click={() => {
-        controls?.rotate(90 * MathUtils.DEG2RAD, 0, true)
-        }}
-    />
-    <Button
-        title="turn right"
-        on:click={() => {
-        controls?.rotate(-90 * MathUtils.DEG2RAD, 0, true)
-        }}
-    />
-</Pane>
-
-<div class='container'>
-    <div class="city">
-        <Canvas>
-            <City bind:controls bind:mesh />
-        </Canvas>
-    </div>
-</div>
-
-<style>
-    .container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100vh; /* full height */
-}
-
-.container > div {
-    flex: 1;             /* each takes up 50% of the space */
-    height: 100%;
-    overflow: hidden;    /* prevents scrollbars if canvas overflows */
-}
-</style> -->
-
 <style>
 	.container {
 		height: 100vh;
@@ -151,5 +105,16 @@
 		.bottom_panel {
 			background-color: aquamarine;
 		}
+	}
+	.container {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+	}
+
+	.container > div {
+		flex: 1; /* each takes up 50% of the space */
+		width: 100%;
+		overflow: hidden; /* prevents scrollbars if canvas overflows */
 	}
 </style>
