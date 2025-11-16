@@ -5,7 +5,7 @@ import { roboFace, systemPrompt, pointSchema } from '$lib/gemini';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 
 export const load: PageServerLoad = async () => {
-	const currentDay = new Date();
+	let currentDay = new Date();
 
 	// Load tasks from Mongo
 	const client = await mongo;
