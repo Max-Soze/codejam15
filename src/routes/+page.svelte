@@ -194,6 +194,7 @@
 	.popup {
 		position: absolute;
 		z-index: 1;
+
 	}
 	.container {
 		display: flex;
