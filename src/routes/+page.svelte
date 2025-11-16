@@ -13,6 +13,9 @@
 	let open = $state(false);
 
 	let { data }: PageProps = $props();
+	let entries = data.entryList;
+	entries.sort((a, b) => a.entryDate.localeCompare(b.entryDate)).reverse();
+
 	let entryVisibility = $state(Array(data.count).fill(false));
 
 	let controls = $state.raw<CameraControlsRef>();
@@ -38,11 +41,11 @@
 <div class="contain">
 	<div class="left_panel">
 		<div class="please_center">
-			<Button2 onClick={() => (open = true)} text="Create New Entry"/>
+			<Button2 onClick={() => (open = true)} text="Create New Entry" />
 		</div>
 		<p class="normal_text">You have made {data.count} entries!</p>
 
-		{#each data.entryList as entry, i}
+		{#each entries as entry, i}
 			<br />
 			<button class="btn-primary" onclick={() => (entryVisibility[i] = true)}>
 				{entry.entryDate}
@@ -101,12 +104,8 @@
 </div>
 
 <style>
-	.please_center{
-		width:85%;
-
-
-		
-
+	.please_center {
+		width: 85%;
 	}
 	.normal_text {
 		position: relative;

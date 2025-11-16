@@ -66,6 +66,7 @@
 
 	// Discipline level (max of 5)
 	let disciplineLvl = $state(getCategoryLevel(discipline));
+	if (disciplineLvl == 0) disciplineLvl = 0.5;
 
 	//Generation of the plan for the position of each house
 	let totalLvl = getTotalLevel(totalXp);
