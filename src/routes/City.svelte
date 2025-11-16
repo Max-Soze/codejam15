@@ -11,6 +11,7 @@
 	import { Mesh, RepeatWrapping } from 'three';
 	import { cubicOut } from 'svelte/easing';
 	import { Tween } from 'svelte/motion';
+	import { getCategoryLevel, getTotalLevel } from '$lib/statLevel';
 
 	//List of props
 	let {
@@ -60,29 +61,31 @@
 
 	let totalXp = health + discipline + intellect + social; // Should we encase in $state()?
 
-  // Health level (max of 5)
-  let healthLvl: number;
-  if (health < 50 ) healthLvl = 0;
-  else if (health < 150) healthLvl = 1;
-  else if (health < 300) healthLvl = 2;
-  else if (health < 500) healthLvl = 3;
-  else healthLvl = 4;
+	// Health level (max of 5)
+	let healthLvl = getCategoryLevel(health);
 
-  // Discipline level (max of 5)
-  let disciplineLvl = $state(0);
-  if (discipline < 50 ) disciplineLvl = 0;
-  else if (discipline < 150) disciplineLvl = 1;
-  else if (discipline < 300) disciplineLvl = 2.5;
-  else if (discipline < 500) disciplineLvl = 4;
-  else disciplineLvl = 5;
+	// Discipline level (max of 5)
+	let disciplineLvl = $state(getCategoryLevel(discipline));
 
-  //Generation of the plan for the position of each house
-  let nbh_count: number;
-  if (totalXp < 100) nbh_count = 1;
-  else if (totalXp < 250) nbh_count = 6;
-  else if (totalXp < 500) nbh_count = 11;
-  else if (totalXp < 1000) nbh_count = 16;
-  else nbh_count = 21;
+	//Generation of the plan for the position of each house
+	let totalLvl = getTotalLevel(totalXp);
+	let nbh_count: number;
+	switch (totalLvl) {
+		case 0:
+			nbh_count = 1;
+			break;
+		case 1:
+			nbh_count = 6;
+			break;
+		case 2:
+			nbh_count = 11;
+			break;
+		case 3:
+			nbh_count = 16;
+			break;
+		default:
+			nbh_count = 21;
+	}
 
 	function generateBuilds(count: number, houseOptions: Array<string>) {
 		const builds = [];
@@ -122,10 +125,7 @@
 <T.PointLight intensity={1300 * disciplineLvl + 500} color={0xffff00} position={[-50, 70, -50]} />
 
 <!-- general lighting -->
-<T.AmbientLight
-    intensity={disciplineLvl}
-    color={0xFFBBAA}
-/>
+<T.AmbientLight intensity={disciplineLvl} color={0xffbbaa} />
 
 <!-- POV control -->
 <CameraControls
@@ -137,13 +137,10 @@
 
 <!-- Plane of grass -->
 <T.Mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-    <T.CircleGeometry args={[260, 100]} />
-    {#await grassTexture then tex}
-        <T.MeshStandardMaterial map={tex} />
-    {/await}
+	<T.CircleGeometry args={[260, 100]} />
+	{#await grassTexture then tex}
+		<T.MeshStandardMaterial map={tex} />
+	{/await}
 </T.Mesh>
 
-<Environment 
-  url="/textures/Sky.png"
-  isBackground
-/>
+<Environment url="/textures/Sky.png" isBackground />
