@@ -40,7 +40,29 @@
 <div class="container">
 	<div class="left_panel">
 		<Button2 onClick={() => (open = true)} text="Create New Entry" />
-		<br />
+		<p class="normal_text">You have made {data.count} entries!</p>
+
+		{#each data.entryList as entry, i}
+			<br />
+			<button class="btn-primary" onclick={() => (entryVisibility[i] = true)}>
+				{entry.entryDate}
+			</button>
+			{#if entryVisibility[i]}
+				<div class="popup">
+					<Popup>
+						<Entry
+							date={entry.entryDate}
+							journalEntry={entry.journalEntry}
+							social={entry.xpSocial}
+							health={entry.xpHealth}
+							discipline={entry.xpDiscipline}
+							intellect={entry.xpIntellect}
+						/>
+						<button onclick={() => (entryVisibility[i] = false)}>Close</button>
+					</Popup>
+				</div>
+			{/if}
+		{/each}
 		{#if open}
 			<Popup>
 				<Button2 onClick={() => (open = false)} text="Close" />
@@ -51,6 +73,33 @@
 	<div class="right_panel">
 		<div class="top_panel"></div>
 		<div class="bottom_panel">
+			<Pane title="Movement" position="fixed">
+				<Button
+					title="zoom in"
+					on:click={() => {
+						controls?.dolly(20, true);
+					}}
+				/>
+				<Button
+					title="zoom out"
+					on:click={() => {
+						controls?.dolly(-20, true);
+					}}
+				/>
+				<Button
+					title="turn left"
+					on:click={() => {
+						controls?.rotate(90 * MathUtils.DEG2RAD, 0, true);
+					}}
+				/>
+				<Button
+					title="turn right"
+					on:click={() => {
+						controls?.rotate(-90 * MathUtils.DEG2RAD, 0, true);
+					}}
+				/>
+			</Pane>
+
 			<div class="container">
 				<div class="city">
 					<Canvas>
@@ -61,35 +110,19 @@
 		</div>
 	</div>
 </div>
-<p>You have made {data.count} entries!</p>
-<button onclick={() => (open = true)}>Open</button>
-
-{#each data.entryList as entry, i}
-	<br />
-	<button onclick={() => (entryVisibility[i] = true)}>
-		{entry.entryDate}
-	</button>
-	{#if entryVisibility[i]}
-		<Popup>
-			<Entry
-				date={entry.entryDate}
-				journalEntry={entry.journalEntry}
-				social={entry.xpSocial}
-				health={entry.xpHealth}
-				discipline={entry.xpDiscipline}
-				intellect={entry.xpIntellect}
-			/>
-			<button onclick={() => (entryVisibility[i] = false)}>Close</button>
-		</Popup>
-	{/if}
-{/each}
 
 <style>
+	.normal_text {
+		position: relative;
+		left: 10px;
+	}
 	.container {
 		height: 100vh;
 		width: 100%;
 		display: grid;
 		grid-template-columns: 2fr 5fr;
+		font-family: 'Courier New', Courier, monospace;
+		color: var(--color-yellow-800);
 	}
 	.left_panel {
 		background-color: var(--color-bg);
@@ -106,15 +139,65 @@
 			background-color: aquamarine;
 		}
 	}
+
+	.btn-primary {
+		/* Rounded borders */
+		border-radius: 10px;
+
+		/* Background*/
+		background-color: var(--color-bg);
+		padding: 10px 10px;
+
+		/* Text */
+		color: var(--color-yellow-800);
+
+		/* Outside the button */
+		box-shadow: var(--shadow-md);
+		border: 1px solid var(--color-yellow-800);
+
+		/*size*/
+		width: 85%;
+
+		/*animation*/
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+
+		/* position */
+		position: relative;
+		top: 20px;
+		left: 20px;
+		right: 20px;
+		bottom: 20px;
+		margin-bottom: 5px;
+	}
+
+	.btn-primary:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.btn-primary:hover {
+		@media (hover: hover) {
+			background-color: var(--color-hover);
+		}
+	}
+	.btn-primary:active {
+		transform: scale(0.95);
+	}
+	.popup {
+		position: absolute;
+		z-index: 1;
+	}
 	.container {
 		display: flex;
 		flex-direction: row;
 		width: 100%;
+		height: 100vh; /* full height */
 	}
 
 	.container > div {
 		flex: 1; /* each takes up 50% of the space */
-		width: 100%;
+		height: 100%;
 		overflow: hidden; /* prevents scrollbars if canvas overflows */
 	}
 </style>
