@@ -29,6 +29,7 @@
 		}
 	});
 </script>
+
 <!--
 {#each Object.entries(data.user) as [key, value]}
 	<p>{key}: {value}</p>
@@ -38,29 +39,22 @@
 -->
 <div class="container">
 	<div class="left_panel">
-		<Button2 onClick={() => (open = true)} text="Create New Entry"/>
+		<Button2 onClick={() => (open = true)} text="Create New Entry" />
 		<br />
 		{#if open}
 			<Popup>
-				<Button2 onClick={() => (open = false)} text="Close"/>
-				<TaskForm  />
-				
+				<Button2 onClick={() => (open = false)} text="Close" />
+				<TaskForm />
 			</Popup>
 		{/if}
 	</div>
 	<div class="right_panel">
-		<div class="top_panel">
-
-		</div>
-		<div class="bottom_panel">
-			
-		</div>
-
+		<div class="top_panel"></div>
+		<div class="bottom_panel"></div>
 	</div>
 </div>
 <p>You have made {data.count} entries!</p>
 <button onclick={() => (open = true)}>Open</button>
-<br />
 
 {#each data.entryList as entry, i}
 	<br />
@@ -81,36 +75,6 @@
 		</Popup>
 	{/if}
 {/each}
-
-<style>
-	.container{
-		height:100vh;
-		width:100%;
-		display: grid;
-		grid-template-columns: 2fr 5fr;
-	}
-	.left_panel{
-		background-color: var(--color-bg);
-
-		min-width: 200px;
-	}
-	.right_panel{
-		background-color:white;
-		display:grid;
-		grid-template-rows: 1fr 4fr;
-		.top_panel{
-			
-
-
-		}
-		.bottom_panel{
-			background-color: aquamarine;
-
-		}
-	}
-</style>
-
-
 
 <!-- 
 <Pane
@@ -165,3 +129,27 @@
     overflow: hidden;    /* prevents scrollbars if canvas overflows */
 }
 </style> -->
+
+<style>
+	.container {
+		height: 100vh;
+		width: 100%;
+		display: grid;
+		grid-template-columns: 2fr 5fr;
+	}
+	.left_panel {
+		background-color: var(--color-bg);
+
+		min-width: 200px;
+	}
+	.right_panel {
+		background-color: white;
+		display: grid;
+		grid-template-rows: 1fr 4fr;
+		.top_panel {
+		}
+		.bottom_panel {
+			background-color: aquamarine;
+		}
+	}
+</style>
